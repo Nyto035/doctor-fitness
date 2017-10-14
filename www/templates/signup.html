@@ -1,0 +1,82 @@
+<ion-header-bar class="bar bar-header bar-balanced">
+      <small><small><h1 class="title" style="text-align: center;">
+          <span style="float: left;" ng-if="!successMessage"><i class="icon ion-android-arrow-back" ui-sref="login"
+          style="font-size: 1.6rem;"></i></span>&nbsp;&nbsp;&nbsp;
+                <i class="icon ion-android-checkmark-circle" ui-sref="login"
+                style="font-size: 1.6rem;" ng-if="successMessage"></i>
+                {{successMessage ? 'ACCOUNT CREATED' : 'CREATE NEW ACCOUNT'}}
+      </h1></small></small>
+</ion-header-bar>
+<ion-content style="background-color: #edecec;display: inline-block;">
+    <div class="list padding pad-t-30 login-cont">
+      <div style="padding-bottom: 12px;">
+        <div class="form-logo">
+        </div>
+        <div class="col-xs-12 margin-t--10 margin-b-20 pad-h-20" ng-if="errorMessage">
+            <div class="alert alert-danger col-12">
+              <small><i class="icon ion-help-circled"></i> {{errorMessage}}</small>
+            </div>
+        </div>
+        <div class="col-xs-12 margin-t--10 margin-b-20 pad-h-20" ng-if="successMessage">
+            <div class="alert alert-success col-12 success-cont" style="font-weight: 400;">
+                {{successMessage}}
+            </div>
+        </div>
+        <div class="col-12 pad-l-5">
+            <div class="form-cont pad-h-15" ng-if="successMessage">
+                <button  class="button button-block button-balanced" ui-sref="login">
+                    GO TO LOG-IN <i class="icon ion-paper-airplane"></i>
+                </button>
+            </div>
+        </div>
+        <form class="padding" ng-submit="createUser()" ng-if="!is_registered">
+            <div class="form-cont">
+                <div class="group">
+                    <input type="text" name="phone" ng-model="user.phone"
+                           placeholder="e.g. +254700000000">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-ios-telephone"></i> Phone</label>
+                </div>
+            </div>
+            <div class="form-cont">
+                <div class="group">
+                    <input type="email" name="email" ng-model="user.register_user_by_email"
+                           placeholder="john.doe@domain.com">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-email"></i> Email</label>
+                </div>
+            </div>
+            <div class="form-cont">
+                <div class="group">
+                    <input type="password" name="password" ng-model="user.password"
+                           placeholder="************" value="password">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-locked"></i> Password</label>
+                </div>
+            </div>
+            <div class="form-cont" style="margin-bottom: 0;">
+                <div class="group">
+                    <input type="password" name="password_confirm" ng-model="user.password_confirm"
+                           placeholder="************" value="password">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-locked"></i> Confirm Password</label>
+                </div>
+            </div>
+            <div ng-if="(user.password !== user.password_confirm) && user.password_confirm"
+            class="text-danger pad-l-15" style="margin-top: -15px;">
+                <span><small>Password and password do not match</small></span>
+            </div>
+            <div class="form-cont margin-b-0">
+                <button  class="button button-block button-balanced" ng-disabled="isDisabled || (user.password !== user.password_confirm)">
+                    <i class="icon ion-android-checkbox-outline">  SAVE</i>
+                    <ion-spinner icon="spiral" ng-if="loader"></ion-spinner>
+                </button>
+            </div>
+        </form>
+        </div>
+    </div>
+</ion-content>

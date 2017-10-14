@@ -1,0 +1,70 @@
+<style type="text/css">
+    .eko-edit-items {
+        width: 400px;
+        padding: 20px;
+    }
+    .eko-edit-items md-input-container {
+        margin: 10px 0 5px 0 !important;
+        max-height: 40px;
+    }
+    .eko-edit-items md-input-container.select {
+        margin: 15px 0 15px !important;
+    }
+</style>
+<md-dialog aria-label="Edit item">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-edit-items">
+                <md-input-container class="md-block" ng-show="[1].indexOf(report.type) > -1" flex>
+                    <label>Report Type</label>
+                    <md-select ng-model="report.condensed">
+                        <md-option ng-repeat="item in trial_types" value="{{item.condensed}}">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="[4].indexOf(report.type) > -1" flex>
+                    <label>Select Account</label>
+                    <md-select ng-model="report.accountid">
+                        <md-option ng-repeat="item in accounts" value="{{item.id}}">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="[2,4].indexOf(report.type) > -1" flex>
+                    <label style="right: auto !important;">Start Date</label>
+                    <md-datepicker ng-model="report.start_date"></md-datepicker>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="[2,4].indexOf(report.type) > -1" flex>
+                    <label style="right: auto !important;">End Date</label>
+                    <md-datepicker ng-model="report.end_date"></md-datepicker>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="[1, 3].indexOf(report.type) > -1" flex>
+                    <label style="right: auto !important;">As At Date</label>
+                    <md-datepicker ng-model="report.as_at_date"></md-datepicker>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <md-button type="button" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="fetchReport($event)">
+                    <md-icon class="material-icons">save</md-icon>
+                    Fetch Report
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

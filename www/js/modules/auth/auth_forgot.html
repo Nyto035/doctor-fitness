@@ -1,0 +1,39 @@
+<style>
+    .eko-auth-box {
+        margin: 50px auto !important;
+        max-width: 400px;
+    }
+    .eko-auth-box md-input-container {
+        margin: 10px 0 0 !important;
+        max-height: 40px;
+    }
+    .eko-auth-box p {
+        font-size: 15px;
+        color: #888;
+    }
+    .eko-auth-button {
+        margin: 10px 0 5px !important;
+    }
+</style>
+<div layout="column" layout-fill layout-padding>
+    <div>
+        <div class="md-whiteframe-1dp eko-auth-box">
+            <div class="padding-10" layout="column">
+                <h1 class="md-headline no-margin">Forgot Password</h1>
+                <p>No worries, enter your login email to recover your password</p>
+                <md-input-container flex>
+                    <label>Enter Login Email Address</label>
+                    <input ng-model="email">
+                </md-input-container>
+                <div layout="row" flex>
+                    <div flex></div>
+                    <div>
+                        <md-button class="eko-auth-button" ng-click="recover($event)">
+                            Recover Password
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

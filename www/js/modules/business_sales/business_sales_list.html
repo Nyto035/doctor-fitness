@@ -1,0 +1,62 @@
+<style type="text/css">
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+    .eko-collect-pay-button {
+        border: 1px solid;
+        padding: 2px 5px !important;
+        margin: 0 !important;
+        line-height: 12px !important;
+        font-size: 12px !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+    }
+    .eko-list-links a {
+        margin-left: 5px;
+        font-size: 12px !important;
+        line-height: 12px !important;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="eko-sales-wrapper padding-20" layout="column">
+        <div layout="row" layout-padding>
+            <h2 class="no-margin no-padding" flex>Sales Transactions</h2>
+            <div>
+                <md-button ui-sref="dashboard.business.business_sales">
+                    <md-icon class="material-icons">add</md-icon>
+                    Sale
+                </md-button>
+            </div>
+        </div>
+        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp" flex>
+            <table class="simple-ng-table condensed">
+                <thead>
+                <tr>
+                    <th class="nowrap">Transaction Date</th>
+                    <th class="nowrap">Customer</th>
+                    <th class="nowrap">Amount</th>
+                    <th class="nowrap">Amount Due</th>
+                    <th class="nowrap">Receipts</th>
+                    <th class="nowrap">ETR Receipt</th>
+                    <th class="nowrap">Invoices</th>
+                    <th class="nowrap">Collect Payment</th>
+                    <th class="nowrap">Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in sales_list">
+                    <td class="nowrap">{{item.date}}</td>
+                    <td class="nowrap">{{item.customer_names}}</td>
+                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                    <td class="nowrap">{{item.amount_due.addCommas()}}</td>
+                    <td class="nowrap eko-list-links"><span ng-repeat="journal in item.journals | filter : {type : 'Receipt'}"><a href="" ng-click="showPrint($event, journal.id, 'Receipt')">{{journal.name}}</a><br></span></td>
+                    <td class="nowrap eko-list-links"><span ng-repeat="journal in item.journals | filter : {type : 'Receipt'}"><a href="" ng-click="showPrint($event, journal.id, 'ETR')">{{journal.name}}</a><br></span></td>
+                    <td class="nowrap eko-list-links"><span ng-repeat="journal in item.journals | filter : {type : 'Invoice'}"><a href="" ng-click="showPrint($event, journal.id, 'Invoice')">{{journal.name}}</a><br></span></td>
+                    <td><md-button ng-show="item.amount_due > 0" class="eko-collect-pay-button md-primary" ng-click="collectPayment($index, $event)">Collect Payment</md-button></td>
+                    <td class="nowrap">{{item.timestamp}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

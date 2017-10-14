@@ -1,0 +1,92 @@
+<style type="text/css">
+    .eko-edit-products {
+        width: 450px;
+        padding: 20px;
+    }
+    .eko-edit-products md-input-container {
+        margin: 10px 0 5px 0 !important;
+    }
+    .eko-edit-products md-input-container.select {
+        margin: 15px 0 15px !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit {{editType.toCamelCase()}} Item</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-edit-products">
+                <md-input-container flex>
+                    <label>{{editType.toCamelCase()}} Name</label>
+                    <input type="text" ng-model="edit.name" ng-change="calcBalance()">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{editType.toCamelCase()}} Code</label>
+                    <input type="text" ng-model="edit.code" ng-change="calcBalance()">
+                </md-input-container>
+                <md-input-container ng-show="editType == 'product'" flex>
+                    <label>Buying Price</label>
+                    <input type="number" step="0.01" ng-model="edit.buying_price" ng-change="calcBalance()">
+                </md-input-container>
+                <md-input-container ng-show="editType == 'product'" flex>
+                    <label>Opening Stock</label>
+                    <input type="number" step="0.01" ng-model="edit.opening_stock" ng-change="calcBalance()">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{editType == "product" ? "Selling Price" : "Service Fees"}}</label>
+                    <input type="number" step="0.01" ng-model="edit.selling_price" ng-change="calcBalance()">
+                </md-input-container>
+                <md-input-container ng-show="editType == 'product'" class="select md-block" flex>
+                    <label>Supplier</label>
+                    <md-select ng-model="edit.supplier">
+                        <md-option ng-repeat="supplier in business_suppliers" value="{{supplier.id}}">
+                            {{supplier.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="select md-block" flex>
+                    <label>Tax</label>
+                    <md-select ng-model="edit.taxid">
+                        <md-option ng-repeat="tax in businessTaxes" value="{{tax.id}}">
+                            {{tax.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="select md-block" flex>
+                    <label>Tax Status</label>
+                    <md-select ng-model="edit.taxstatus">
+                        <md-option ng-repeat="status in taxStatuses" value="{{status.id}}">
+                            {{status.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container ng-show="editType == 'product'" class="select md-block" flex>
+                    <label>Tracked</label>
+                    <md-select ng-model="edit.tracked">
+                        <md-option ng-repeat="tracked in trackedStatuses" value="{{tracked.id}}">
+                            {{tracked.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <md-button type="button" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                    Save Details
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

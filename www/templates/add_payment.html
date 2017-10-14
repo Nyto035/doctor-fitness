@@ -1,0 +1,62 @@
+<ion-popover-view class="pop-modal" ng-class="{'pop-modal' : context === 'pay',
+	'sales-popover': context === 'sale'}">
+	<ion-header-bar>
+	  	<h1 class="title" ng-if="context === 'pay' || context === 'receipt'"
+	  	style="text-align: left;margin-left:20px;">
+	  		<small style="font-size: 1.0rem;color:#FFF;">Receive Pay</small>
+	  	</h1>
+	  	<h1 class="title" ng-if="context === 'sale'"
+	  	style="text-align: left;margin-left:20px;">
+	  		Add Item
+	  	</h1>
+		<button class="button button-clear button-primary" 
+		ng-click="closePopover()">
+		  	<i class="icon ion-close-circled" style="color:#cccccc;"></i>
+		</button>
+	</ion-header-bar>
+	<ion-content>
+	  	<form ng-if="context === 'pay' || context === 'receipt'">
+	  		<div class="form-cont margin-b-10 pad-t-5 margin-t--10">
+			    <div class="group col-12">
+			    	<div class="col-12">
+			    		<small class="text-primary">Receiving Account</small>
+			    	</div>
+			    	<div class="col-12">
+			    		<small>{{popOverAcc.account_name}}</small>
+			    	</div>
+			        <!-- <select class="no-border" ng-model="a_payment.account" ng-options="acc.id as acc.account for acc in accounts">
+			            <option value="" disabled selected hidden>
+			                --Select Account--
+			            </option>
+			        </select>
+			        <span class="highlight"></span>
+			        <span class="bar"></span>
+			        <label class="top--10">Account</label> -->
+			    </div>
+			 </div>
+			 <div class="form-cont margin-b-10 pad-t-10">
+			    <div class="group">
+			        <input type="number" required
+			               placeholder="Enter the amount"
+			               name="amount" 
+			               ng-model="popOverAcc.amount">
+			        <span class="highlight"></span>
+			        <span class="bar"></span>
+			        <label>Amount</label>
+			        <!-- <validation-errors field="sub_location" valerrors="validation_errors">
+			        </validation-errors> -->
+			    </div>
+			</div>
+			<div class="form-cont margin-b-0 pad-t-5">
+			    <button type="button" class="button button-block button-balanced"
+			    ng-click="addPayment(popOverAcc)"
+			    style="margin-top: -10px;min-height: 40px;padding:0 8px;">
+			        <i class="icon ion-card">  RECEIVE PAYMENT </i>
+			    </button>
+			</div>
+	  	</form>
+	  	<div class="col-12 form-cont inline-flex margin-t-10 overflow-hidden" ng-if="context === 'sale'">
+        	<ng-include src="'templates/item_form.html'" replace></ng-include>
+      	</div>
+	</ion-content>
+</ion-popover-view>

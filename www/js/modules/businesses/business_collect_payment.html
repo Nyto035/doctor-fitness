@@ -1,0 +1,93 @@
+<style type="text/css">
+    .eko-sale-dialog-form md-input-container {
+        margin: 0 !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div id="checkout-wrapper" class="md-dialog-content" style="width: 500px">
+                <div layout="column" class="eko-sale-dialog-form">
+                    <div flex layout="row" style="margin-bottom: 20px;">
+                        <h2 class="no-margin md-headline">Amount: <strong>{{process_total.addCommas()}}</strong></h2>
+                        <span flex></span>
+                        <h2 class="no-margin md-headline">Balance: <strong>{{balance}}</strong></h2>
+                    </div>
+                    <div layout="row" flex>
+                        <md-input-container flex>
+                            <label>Amount Paid</label>
+                            <input type="number" step="0.01" ng-model="amount_paid" ng-change="calcBalance()">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>{{pay_account_title}}</label>
+                            <md-select ng-model="selected_payment_option">
+                                <md-option ng-repeat="item in cash_accounts" value="{{$index}}">
+                                    {{item.account}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row" flex>
+                        <md-input-container class="md-block" flex>
+                            <label style="right: auto !important;">Transaction Date</label>
+                            <md-datepicker ng-model="transactionDate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Transaction Notes</label>
+                            <textarea ng-model="transaction_notes"></textarea>
+                        </md-input-container>
+                    </div>
+                    <div class="eko-sale-dialog-add-payment">
+                        <md-button ng-click="addPaymentOption()">
+                            <md-icon class="material-icons">add</md-icon>
+                            Add Payment To List
+                        </md-button>
+                    </div>
+                    <div class="md-whiteframe-1dp eko-payment-list" ng-show="payment_options.length > 0">
+                        <h2 class="md-title" style="margin-left: 10px;">Payment List</h2>
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th>{{pay_account_title}}</th>
+                                <th>Amount</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="payment_option in payment_options">
+                                <td>{{payment_option.account}}</td>
+                                <td>{{payment_option.amount.addCommas()}}</td>
+                                <td>
+                                    <md-button ng-click="removePaymentOption($index)" class="tiny-icon-button">
+                                        <md-icon class="material-icons">delete</md-icon>
+                                    </md-button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <md-button type="button" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="completeTransaction($event)">
+                    Complete Transaction
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

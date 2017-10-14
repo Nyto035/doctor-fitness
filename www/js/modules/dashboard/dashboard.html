@@ -1,0 +1,160 @@
+<style type="text/css">
+    .eko-dashboard-wrapper {
+        position: absolute;
+        background: #fff;
+    }
+    .eko-dashboard-sidenav {
+        max-width: 250px;
+    }
+    .eko-dashboard-sidenav md-list {
+        padding: 0 !important;
+    }
+    .eko-dashboard-sidenav-item {
+        color: inherit !important;
+        font-size: 14px !important;
+    }
+    .eko-dashboard-sidenav-item md-icon {
+        font-size: 24px !important;
+        margin: 12px 10px !important;
+        color: inherit !important;
+    }
+    .eko-dashboard-sidenav-business-name {
+        padding: 5px 10px 5px 10px;
+        font-size: 14px;
+        color: #fff;
+        background: rgba(0, 82, 72, 0.68);
+        position: absolute;
+        bottom: 0;
+        z-index: 10;
+        width: calc(100%);
+    }
+    .eko-dashboard-toolbar {
+        z-index: 10;
+        background: #fff !important;
+        color: #002d28 !important;
+    }
+    .eko-dashboard-toolbar-color {
+        color: #002d28 !important;
+    }
+    .eko-dashboard-toolbar-divider {
+        border-left: 1px solid #ddd;
+        width: 1px;
+        height: 40px;
+        margin: 0 10px;
+    }
+    .avatar-button {
+        height: 45px !important;
+        width: 45px !important;
+    }
+    .avatar-image {
+        width: 170%;
+        height: auto;
+        margin-top: -35%;
+        margin-left: -35%;
+    }
+    .eko-dashboard-sidenav-logo {
+        background: rgb(0, 105, 92);
+        min-height: 130px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+    .eko-dashboard-sidenav-logo img {
+        width: calc(100%);
+        position: absolute;
+    }
+    .eko-dashboard-content {
+        position: relative;
+        width: calc(100%);
+        height: calc(100%);
+        overflow: auto;
+        z-index: 2;
+    }
+    .eko-dashboard-progress {
+        position: fixed;
+        z-index: 3;
+    }
+    .eko-active {
+        background: #00695c !important;
+        color: #fff !important;
+    }
+</style>
+<img src="res/images/bgimage.jpg" style="display: none" />
+<div id="dashboard" class="eko-dashboard-wrapper" layout="row" flex layout-fill>
+    <md-sidenav layout="column" class="eko-dashboard-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="displayGtSm && lockedSideNav">
+        <div class="eko-dashboard-sidenav-logo">
+            <a href=""><img ng-hide="!sideNavLogo" ng-src="{{sideNavLogo}}" /></a>
+            <div class="eko-dashboard-sidenav-business-name">
+                {{dashboardTitle}}
+            </div>
+        </div>
+        <md-list>
+            <div ng-repeat="link in sideNavLinks">
+                <md-divider ng-show="link.separator"></md-divider>
+                <md-list-item class="eko-dashboard-sidenav-item" ui-sref="{{link.stateRef}}" ng-class="{'eko-active' : link.isActive}" ng-click="setSideNavActive();closeSideNavPanel()">
+                    <md-icon class="md-default-theme" class="material-icons">{{link.icon}}</md-icon>
+                    <p>{{link.name}}</p>
+                    <md-icon style="margin: 0 !important;" ng-show="link.hasSecondary" class="md-secondary material-icons" aria-label="More Actions" ui-sref="{{link.secondaryRef || 'home'}}" ng-click="null">{{link.secondaryIcon || 'star'}}</md-icon>
+                </md-list-item>
+            </div>
+        </md-list>
+    </md-sidenav>
+    <div layout="column" layout-fill flex>
+        <md-toolbar md-theme="eko_teal_accent" class="eko-dashboard-toolbar md-whiteframe-1dp">
+            <div class="md-toolbar-tools">
+                <md-button ng-click="toggleSidenav('left')" class="md-icon-button" aria-label="More">
+                    <md-icon class="material-icons eko-dashboard-toolbar-color">
+                        {{displayGtSm ? (lockedSideNav ? 'arrow_back' : 'menu') : 'menu'}}
+                    </md-icon>
+                </md-button>
+                <img ui-sref="home" hide-gt-xs src="icon.png" width="50" />
+                <img ui-sref="home" hide-xs src="res/images/logo.png" width="100" />
+                <div class="eko-dashboard-toolbar-divider"></div>
+                <h2><span>{{dashboardTitle}}</span></h2>
+                <span flex></span>
+                <div layout="row" layout-align="end center">
+                    <div hide-xs layout="column">
+                        <span class="eko-dashboard-toolbar-color md-title">{{session.names}}</span>
+                        <span style="color: #888 !important; font-size: 12px; text-align: right">Welcome back</span>
+                    </div>
+                    <md-menu md-position-mode="target-right target">
+                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button avatar-button md-raised" aria-label="Session Operations">
+                            <img class="avatar-image" ng-src="{{session.avatar.trim().length < 1 ? avatar_placeholder : session.avatar}}" />
+                        </md-button>
+                        <md-menu-content width="2">
+                            <md-menu-item>
+                                <md-button ui-sref="dashboard.profile">
+                                    <md-icon class="material-icons">person_outline</md-icon>
+                                    Edit Profile
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ui-sref="dashboard.businesses">
+                                    <md-icon class="material-icons">business</md-icon>
+                                    My Businesses
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="lockSession($event)">
+                                    <md-icon class="material-icons">lock</md-icon>
+                                    Lock Session
+                                </md-button>
+                            </md-menu-item>
+                            <md-divider></md-divider>
+                            <md-menu-item>
+                                <md-button ng-click="logoutSession($event, true)">
+                                    <md-icon class="material-icons">power_settings_new</md-icon>
+                                    Sign Out
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-content layout="column" style="background: #fdfdfd" layout-fill flex>
+            <md-progress-linear ng-show="dashboardLoading" class="eko-dashboard-progress" md-mode="indeterminate"></md-progress-linear>
+            <div class="eko-dashboard-content" layout="column" ng-cloak ui-view></div>
+        </md-content>
+    </div>
+</div>

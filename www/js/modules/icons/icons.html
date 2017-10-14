@@ -1,0 +1,12 @@
+<div class="md-padding" style="background: #eee">
+    <div layout="column" flex>
+        <h1 style="color:#585858">Material ({{names.length}}) Icons</h1>
+        <md-grid-list md-cols="8"  md-row-height="1:1"  md-gutter="2px" md-cols-xs="10" md-cols-sm="15" md-cols-md="20" md-cols-lg="20" md-cols-gt-lg="30">
+            <md-grid-tile ng-repeat="icon_name in names" ng-click="console.log($index)" title="{{icon_name}}">
+                <div style="padding:10px;">
+                    <i class="material-icons" style="color:#000;">{{icon_name}}</i>
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</div>

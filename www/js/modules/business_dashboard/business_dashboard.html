@@ -1,0 +1,65 @@
+<style type="text/css">
+    .eko-dashboard-shortcut-container {
+        background: rgb(246, 247, 247);
+        padding: 20px;
+    }
+    .eko-dashboard-shortcut {
+        text-align: center;
+        text-transform: none;
+        line-height: normal;
+        padding: 10px;
+        margin: 5px;
+        background: #fff;
+        width: 150px;
+    }
+    .eko-dashboard-shortcut .shortcut-icon md-icon {
+        font-size: 50px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 2px;
+    }
+    .shortcut-text {
+        font-size: 12px;
+    }
+    .eko-dashboard-panel {
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #fff;
+        /* border: 1px solid rgba(0, 137, 123, 0.82) */
+    }
+    .eko-dashboard-panel-value {
+        margin: 10px 0;
+    }
+    .eko-dashboard-panel-text {
+        font-size: 14px;
+    }
+    .eko-dashboard-stats {
+        margin-bottom: 20px;
+    }
+    .eko-table-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="eko-dashboard-stats" layout-gt-xs="row">
+        <div layout="column" class="eko-dashboard-panels" style="padding: 20px 10px 0 10px" flex-gt-xs>
+            <div class="eko-dashboard-panel md-whiteframe-1dp">
+                <h1 class="eko-dashboard-panel-value no-padding md-display-1">{{net_revenue.addCommas()}} KES</h1>
+                <div class="eko-dashboard-panel-text">{{monthText()}} revenues</div>
+            </div>
+            <div class="eko-dashboard-panel md-whiteframe-1dp" ng-show="costs > 0">
+                <h1 class="eko-dashboard-panel-value no-padding md-display-1">{{costs.addCommas()}} KES</h1>
+                <div class="eko-dashboard-panel-text">{{monthText()}} cost of sales (For tracked inventory and direct expenses)</div>
+            </div>
+	    <div class="eko-dashboard-panel md-whiteframe-1dp">
+                <h1 class="eko-dashboard-panel-value no-padding md-display-1">{{expenses.addCommas()}} KES</h1>
+                <div class="eko-dashboard-panel-text">{{monthText()}} expenses</div>
+            </div>
+            <div class="eko-dashboard-panel md-whiteframe-1dp">
+                <h1 class="eko-dashboard-panel-value no-padding md-display-1">{{profit.addCommas()}} KES</h1>
+                <div class="eko-dashboard-panel-text">Net profit {{monthText()}}</div>
+            </div>
+        </div>
+    </div>
+</div>

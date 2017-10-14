@@ -1,0 +1,148 @@
+<style type="text/css">
+    .eko-purchases-form md-input-container {
+        margin: 12px 0 5px 0 !important;
+    }
+    .eko-purchase-row-item {
+        margin-top: 12px !important;
+        margin-right: 5px !important;
+        margin-bottom: 2px !important;
+    }
+    .eko-purchase-row-item:last-child {
+        margin-right: 0 !important;
+    }
+    .eko-purchases-table-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .eko-purchases-totals {
+        padding: 10px;
+        text-align: right;
+    }
+    .eko-purchase-row-items {
+        margin-top: -3px;
+        padding-left: 10px;
+    }
+    .eko-border-button {
+        border: 1px solid;
+    }
+    .eko-link {
+        text-decoration: none;
+    }
+    .eko-link:hover {
+        text-decoration: underline;
+    }
+    .eko-link:focus {
+        outline: 0 !important;
+    }
+    .eko-link:active {
+        color: #000 !important;
+    }
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+    .eko-collect-pay-button {
+        border: 1px solid;
+        padding: 2px 5px !important;
+        margin: 0 5px !important;
+        line-height: 12px !important;
+        font-size: 12px !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+    }
+    .eko-list-links a {
+        margin-left: 5px;
+        font-size: 12px !important;
+        line-height: 12px !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Business Accounts">
+                <md-content class="md-padding">
+                    <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th>Account Name</th>
+                                <th>Category</th>
+                                <th>Account Group</th>
+                                <th>Balance</th>
+                                <th>Date Modified</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in business_accounts">
+                                <td class="nowrap">{{item.name}}</td>
+                                <td class="nowrap">{{item.category_name}}</td>
+                                <td class="nowrap">{{item.group_name}}</td>
+                                <td class="nowrap">{{item.value.addCommas()}}</td>
+                                <td class="nowrap">{{item.timestamp}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Account Groups">
+                <md-content class="md-padding">
+                    <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Group Name</th>
+                                <th>Category</th>
+                                <th>Date Modified</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in account_groups">
+                                <td>{{$index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.category_name}}</td>
+                                <td>{{item.timestamp}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Transactions Audit">
+                <md-content class="md-padding">
+                    <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th class="nowrap">Transaction Date</th>
+                                <th class="nowrap">Timestamp</th>
+                                <th class="nowrap">User Email</th>
+                                <th class="nowrap">Item/Client</th>
+                                <th class="nowrap">Transaction Type</th>
+                                <th class="nowrap">Value</th>
+                                <th class="nowrap">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in audit_business_transactions">
+                                <td class="nowrap">{{item.transaction_date}}</td>
+                                <td class="nowrap">{{item.timestamp}}</td>
+                                <td class="nowrap">{{item.transaction_user_email}}</td>
+                                <td class="nowrap">{{item.transaction_client_name}}</td>
+                                <td class="nowrap">{{item.transaction_type_name}}</td>
+                                <td class="nowrap">{{item.totals.addCommas()}}</td>
+                                <td>
+                                    <div layout="row">
+                                        <md-button ng-click="viewDetails($index, $event)" class="md-primary eko-collect-pay-button">View Details</md-button>
+                                        <md-button disabled class="eko-collect-pay-button">Reverse</md-button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

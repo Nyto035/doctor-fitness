@@ -1,0 +1,66 @@
+<style type="text/css">
+    .eko-info-edit-modal {
+        width: 450px;
+        padding: 20px;
+    }
+    .eko-info-edit-modal md-input-container {
+        max-height: 45px !important;
+        margin: 0 !important;
+    }
+    .eko-info-edit-modal p {
+        margin: 5px 0 10px !important;
+    }
+    .eko-info-edit-modal md-checkbox {
+        margin-bottom: 4px !important;
+    }
+    .eko-permissions-list {
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+    }
+    .eko-permissions-list md-input-container {
+        float: left;
+        width: 48%;
+        margin: 0 !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit User Group</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-info-edit-modal">
+                <md-input-container flex>
+                    <label>Edit Group Name</label>
+                    <input type="text" ng-model="edit.name">
+                </md-input-container>
+                <p>Check modules which this group is allowed</p>
+                <div class="eko-permissions-list">
+                    <md-input-container class="md-block" ng-repeat="item in edit.permissions">
+                        <md-checkbox name="tos" ng-model="item.selected" required>
+                            {{item.name}}
+                        </md-checkbox>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="selectPermissions(true)" class="md-icon-button material-icons"><md-icon>check_box</md-icon></md-button>
+            <md-button ng-click="selectPermissions(false)" class="md-icon-button material-icons"><md-icon>check_box_outline_blank</md-icon></md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                Save Details
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

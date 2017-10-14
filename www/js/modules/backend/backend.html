@@ -1,0 +1,149 @@
+<style type="text/css">
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+    .eko-collect-pay-button {
+        border: 1px solid;
+        padding: 2px 5px !important;
+        margin: 0 !important;
+        line-height: 12px !important;
+        font-size: 12px !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Agents List">
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <div layout="row">
+                            <h2 class="no-margin no-padding" flex>{{back_agents.length}} Agent{{back_agents.length > 1 ? 's' : ''}}</h2>
+                            <div>
+                                <md-button ng-click="fetchBackAgents($event)">
+                                    <md-icon class="material-icons">refresh</md-icon>
+                                    Refresh
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">#</th>
+                                    <th class="nowrap">Names</th>
+                                    <th class="nowrap">Email</th>
+                                    <th class="nowrap">Phone</th>
+                                    <th class="nowrap">Campaign</th>
+                                    <th class="nowrap">Region</th>
+                                    <th class="nowrap">Groups</th>
+                                    <th class="nowrap">Code</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in back_agents">
+                                    <td class="nowrap">{{$index + 1}}</td>
+                                    <td class="nowrap">{{item.names}}</td>
+                                    <td class="nowrap">{{item.email}}</td>
+                                    <td class="nowrap">{{item.phone}}</td>
+                                    <td class="nowrap">{{item.campaign}}</td>
+                                    <td class="nowrap">{{item.region}}</td>
+                                    <td class="nowrap">{{item.groups}}</td>
+                                    <td class="nowrap">{{item.code}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Users List">
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <div layout="row">
+                            <h2 class="no-margin no-padding" flex>{{back_users.length}} User{{back_users.length > 1 ? 's' : ''}}</h2>
+                            <div>
+                                <md-button ng-click="fetchBackUsers($event)">
+                                    <md-icon class="material-icons">refresh</md-icon>
+                                    Refresh
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">#</th>
+                                    <th class="nowrap">Email</th>
+                                    <th class="nowrap">Phone</th>
+                                    <th class="nowrap">Timestamp</th>
+                                    <th class="nowrap">Activate</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in back_users">
+                                    <td class="nowrap">{{$index + 1}}</td>
+                                    <td class="nowrap">{{item.email}}</td>
+                                    <td class="nowrap">{{item.phone}}</td>
+                                    <td class="nowrap">{{item.status_timestamp}}</td>
+                                    <td><md-button ng-show="item.status != 'ACTIVE'" class="eko-collect-pay-button md-primary" ng-click="activateUser($index, $event)">Activate User</md-button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Businesses List">
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <div layout="row">
+                            <h2 class="no-margin no-padding" flex>{{back_businesses.length}} Business{{back_businesses.length > 1 ? 'es' : ''}}</h2>
+                            <div>
+                                <md-button ng-click="saveBilling($event)">
+                                    <md-icon class="material-icons">save</md-icon>
+                                    Save Billing
+                                </md-button>
+                            </div>
+							<div>
+                                <md-button ng-click="fetchBackBusinesses($event)">
+                                    <md-icon class="material-icons">refresh</md-icon>
+                                    Refresh
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">#</th>
+                                    <th class="nowrap">Business Name</th>
+                                    <th class="nowrap">Agent Code</th>
+                                    <th class="nowrap">User Email</th>
+                                    <th class="nowrap">Plan</th>
+                                    <th class="nowrap"><input class="eko-backend-checkbox" type="checkbox" ng-model="billing_toggle" ng-change="toggle_billing()"> Billing ({{(back_businesses | filter : {billing: true}).length}})</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in back_businesses">
+                                    <td class="nowrap">{{$index + 1}}</td>
+                                    <td class="nowrap">{{item.name}}</td>
+                                    <td class="nowrap">{{item.agent}}</td>
+                                    <td class="nowrap">{{item.email}}</td>
+                                    <td class="nowrap">{{item.plan}}</td>
+                                    <td class="nowrap"><input class="eko-backend-checkbox" type="checkbox" ng-model="item.billing"></td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

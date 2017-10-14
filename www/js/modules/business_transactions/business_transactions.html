@@ -1,0 +1,211 @@
+<style type="text/css">
+    .eko-purchases-form md-input-container {
+        margin: 12px 0 5px 0 !important;
+    }
+    .eko-purchase-row-item {
+        margin-top: 12px !important;
+        margin-right: 5px !important;
+        margin-bottom: 2px !important;
+    }
+    .eko-purchase-row-item:last-child {
+        margin-right: 0 !important;
+    }
+    .eko-purchases-table-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .eko-purchases-totals {
+        padding: 10px;
+        text-align: right;
+    }
+    .eko-purchase-row-items {
+        margin-top: -3px;
+        padding-left: 10px;
+    }
+    .eko-border-button {
+        border: 1px solid;
+    }
+    .eko-link {
+        text-decoration: none;
+    }
+    .eko-link:hover {
+        text-decoration: underline;
+    }
+    .eko-link:focus {
+        outline: 0 !important;
+    }
+    .eko-link:active {
+        color: #000 !important;
+    }
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+    .eko-collect-pay-button {
+        border: 1px solid;
+        padding: 2px 5px !important;
+        margin: 0 5px !important;
+        line-height: 12px !important;
+        font-size: 12px !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+    }
+    .eko-list-links a {
+        margin-left: 5px;
+        font-size: 12px !important;
+        line-height: 12px !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Other Revenues">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Other Revenues</h2>
+                        <md-button ng-click="newRevenue($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Revenue
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Transaction Date</th>
+                                    <th class="nowrap">Revenue Source</th>
+                                    <th class="nowrap">Amount</th>
+                                    <th class="nowrap">User Email</th>
+                                    <th class="nowrap">Transaction Notes</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_other_revenues">
+                                    <td class="nowrap">{{item.date}}</td>
+                                    <td class="nowrap">{{item.customer_names}}</td>
+                                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                                    <td class="nowrap">{{item.user_email}}</td>
+                                    <td class="nowrap">{{item.notes}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Inject Capital">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Capital Injection History</h2>
+                        <md-button ng-click="injectCapital($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            Inject Capital
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Transaction Date</th>
+                                    <th class="nowrap">Capital Injection Source</th>
+                                    <th class="nowrap">Amount</th>
+                                    <th class="nowrap">User Email</th>
+                                    <th class="nowrap">Transaction Notes</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_injected_capital">
+                                    <td class="nowrap">{{item.date}}</td>
+                                    <td class="nowrap">{{item.customer_names}}</td>
+                                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                                    <td class="nowrap">{{item.user_email}}</td>
+                                    <td class="nowrap">{{item.notes}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Inter-Account Transfer">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Inter-Account Transfers History</h2>
+                        <md-button ng-click="interAccountTransfer($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            Inter-Account Transfer
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Transaction Date</th>
+                                    <th class="nowrap">Transfer Description</th>
+                                    <th class="nowrap">Amount</th>
+                                    <th class="nowrap">User Email</th>
+                                    <th class="nowrap">Transaction Notes</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_interaccount_transfers">
+                                    <td class="nowrap">{{item.date}}</td>
+                                    <td class="nowrap">{{item.customer_names}}</td>
+                                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                                    <td class="nowrap">{{item.user_email}}</td>
+                                    <td class="nowrap">{{item.notes}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Drawings & Dividends">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Drawings &amp; Dividends History</h2>
+                        <md-button ng-click="newBusinessDrawing($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Drawing
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Transaction Date</th>
+                                    <th class="nowrap">Beneficiary Name</th>
+                                    <th class="nowrap">Amount</th>
+                                    <th class="nowrap">User Email</th>
+                                    <th class="nowrap">Transaction Notes</th>
+                                    <th class="nowrap">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_drawings">
+                                    <td class="nowrap">{{item.date}}</td>
+                                    <td class="nowrap">{{item.customer_names}}</td>
+                                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                                    <td class="nowrap">{{item.user_email}}</td>
+                                    <td class="nowrap">{{item.notes}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

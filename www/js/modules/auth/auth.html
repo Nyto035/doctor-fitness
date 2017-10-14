@@ -1,0 +1,24 @@
+<style type="text/css">
+    .eko-auth-wrapper {
+        background: #fff;
+        padding: 20px;
+    }
+    .eko-auth-logo {
+        padding: 10px;
+    }
+    .eko-auth-footer {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+<div class="eko-auth-wrapper" layout="column" layout-fill flex>
+    <div class="eko-auth-logo">
+        <a ui-sref="home">
+            <img src="res/images/logo.png" width="150" />
+        </a>
+    </div>
+    <div class="eko-auth-content" layout="column" ng-cloak ui-view></div>
+    <div class="eko-auth-footer">
+        <a style="font-size: 12px; color: #888; text-decoration: none;" ui-sref="home">Home</a>
+    </div>
+</div>

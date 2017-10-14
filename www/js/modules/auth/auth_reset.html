@@ -1,0 +1,43 @@
+<style>
+    .eko-auth-box {
+        margin: 50px auto !important;
+        max-width: 400px;
+    }
+    .eko-auth-box md-input-container {
+        margin: 10px 0 0 !important;
+        max-height: 40px;
+    }
+    .eko-auth-box p {
+        font-size: 15px;
+        color: #888;
+    }
+    .eko-auth-button {
+        margin: 10px 0 5px !important;
+    }
+</style>
+<div layout="column" layout-fill layout-padding>
+    <div>
+        <div class="md-whiteframe-1dp eko-auth-box">
+            <div class="padding-10" layout="column">
+                <h1 class="md-headline no-margin">Reset Login Password</h1>
+                <p>You can enter your new login password here</p>
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input type="password" ng-model="passwords.password">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Confirm Password</label>
+                    <input type="password" ng-model="passwords.password_confirm">
+                </md-input-container>
+                <div layout="row" flex>
+                    <div flex></div>
+                    <div>
+                        <md-button class="eko-auth-button" ng-click="reset($event)">
+                            Recover Password
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

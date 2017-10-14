@@ -1,0 +1,29 @@
+<style type="text/css">
+    .eko-businesses-card {
+        min-width: 300px;
+        min-height: 300px;
+        margin-top: 50px;
+    }
+</style>
+<div layout="row" layout-align="center start" layout-fill layout-margin flex>
+    <md-card class="eko-businesses-card" flex-gt-sm="70" flex-sm="80">
+        <md-card-header layout-align="center" class="md-whiteframe-1dp">
+            <md-card-header-text flex>
+                <span class="md-title">Active Businesses</span>
+                <span class="md-subhead">Showing {{businesses.length}} businesses. Click to open</span>
+            </md-card-header-text>
+            <div layout="row" layout-align="end center">
+                <md-button ui-sref="dashboard.new_business" class="md-icon-button md-raised md-primary"><md-icon class="material-icons">add</md-icon></md-button>
+            </div>
+        </md-card-header>
+        <md-list flex style="padding-top: 0 !important">
+            <md-list-item class="md-2-line" ng-repeat="business in businesses" title="Click to open {{business.name}}" ng-click="openBusiness($index)">
+                <img ng-src="{{business.logo.trim().length > 0 ? business.logo : logo_placeholder}}" class="md-avatar" alt="business.name" />
+                <div class="md-list-item-text">
+                    <h3>{{business.name}}</h3>
+                    <p>{{business.slogan}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card>
+</div>

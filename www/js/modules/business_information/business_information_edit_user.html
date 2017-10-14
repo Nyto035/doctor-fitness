@@ -1,0 +1,93 @@
+<style type="text/css">
+    .eko-info-edit-modal {
+        width: 450px;
+        padding: 20px;
+    }
+    .eko-info-edit-modal md-input-container {
+        max-height: 45px !important;
+        margin: 10px 0 !important;
+    }
+    .eko-info-edit-modal p {
+        margin: 10px 0 !important;
+        font-size: 12px;
+    }
+    .eko-info-edit-modal md-checkbox {
+        margin-bottom: 4px !important;
+    }
+    .eko-check-list {
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+    }
+    .eko-check-list md-input-container {
+        float: left;
+        width: 48%;
+        margin: 0 !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit User</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-info-edit-modal">
+                <md-input-container ng-show="edit.id.trim().length < 1" flex>
+                    <label>Names</label>
+                    <input type="text" ng-model="edit.names">
+                </md-input-container>
+                <md-input-container ng-show="edit.id.trim().length < 1" flex>
+                    <label>Email <span style="color: red">*</span></label>
+                    <input type="text" ng-model="edit.email">
+                </md-input-container>
+                <md-input-container ng-show="edit.id.trim().length < 1" flex>
+                    <label>Phone</label>
+                    <input type="text" ng-model="edit.phone">
+                </md-input-container>
+                <md-input-container class="select md-block" flex>
+                    <label>Status</label>
+                    <md-select ng-model="edit.status">
+                        <md-option ng-repeat="status in statuses" value="{{status}}">
+                            {{status}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Notes</label>
+                    <textarea ng-model="edit.notes"></textarea>
+                </md-input-container>
+                <p ng-show="edit.branches.length > 0">Select a branch to limit user to. (optional)</p>
+                <div ng-show="edit.branches.length > 0" class="eko-check-list">
+                    <md-input-container class="md-block" ng-repeat="item in edit.branches">
+                        <md-checkbox name="_branch" ng-model="edit.branches[$index].selected" required>
+                            {{item.name}}
+                        </md-checkbox>
+                    </md-input-container>
+                </div>
+                <p ng-show="edit.groups.length > 0">Select groups associated with user. (optional but important)</p>
+                <div ng-show="edit.groups.length > 0" class="eko-check-list">
+                    <md-input-container class="md-block" ng-repeat="item in edit.groups">
+                        <md-checkbox name="_group" ng-model="edit.groups[$index].selected" required>
+                            {{item.name}}
+                        </md-checkbox>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                Save Details
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

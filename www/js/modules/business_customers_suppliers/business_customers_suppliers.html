@@ -1,0 +1,119 @@
+<style type="text/css">
+    .customers-table-wrapper {
+        overflow-x: auto !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="manage customers">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Manage Customers</h2>
+                        <md-button ng-click="newCustomer($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Customer
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Name</th>
+                                    <th class="nowrap">Phone Contacts</th>
+                                    <th class="nowrap">Email Contacts</th>
+                                    <th class="nowrap">Websites</th>
+                                    <th class="nowrap">Physical Address</th>
+                                    <th class="nowrap">Postal Address</th>
+                                    <th class="nowrap">Date Modified</th>
+                                    <th class="nowrap"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_customers">
+                                    <td class="nowrap">{{item.name}}</td>
+                                    <td class="nowrap">{{item.phone}}</td>
+                                    <td class="nowrap">{{item.email}}</td>
+                                    <td class="nowrap">{{item.website}}</td>
+                                    <td class="nowrap" ng-bind-html="item.physical_address.replace('\n', '<br>')"></td>
+                                    <td class="nowrap" ng-bind-html="item.postal_address.replace('\n', '<br>')"></td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                    <td>
+                                        <div layout="row">
+                                            <div>
+                                                <md-button ng-click="editCustomer($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">edit</md-icon>
+                                                </md-button>
+                                            </div>
+                                            <div>
+                                                <md-button ng-click="deleteCustomer($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="manage suppliers">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Manage Suppliers</h2>
+                        <md-button ng-click="newSupplier($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Supplier
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="customers-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Name</th>
+                                    <th class="nowrap">Phone Contacts</th>
+                                    <th class="nowrap">Email Contacts</th>
+                                    <th class="nowrap">Websites</th>
+                                    <th class="nowrap">Physical Address</th>
+                                    <th class="nowrap">Postal Address</th>
+                                    <th class="nowrap">Date Modified</th>
+                                    <th class="nowrap"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_suppliers">
+                                    <td class="nowrap">{{item.name}}</td>
+                                    <td class="nowrap">{{item.phone}}</td>
+                                    <td class="nowrap">{{item.email}}</td>
+                                    <td class="nowrap">{{item.website}}</td>
+                                    <td class="nowrap" ng-bind-html="item.physical_address.replace('\n', '<br>')"></td>
+                                    <td class="nowrap" ng-bind-html="item.postal_address.replace('\n', '<br>')"></td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                    <td>
+                                        <div layout="row">
+                                            <div>
+                                                <md-button ng-click="editSupplier($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">edit</md-icon>
+                                                </md-button>
+                                            </div>
+                                            <div>
+                                                <md-button ng-click="deleteSupplier($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

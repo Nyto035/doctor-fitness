@@ -1,0 +1,729 @@
+<style type="text/css">
+    .eko-table-wrapper {
+        overflow-x: auto !important;
+    }
+    .eko-info-wrapper {
+        padding: 10px 30px;
+        background: #fff;
+    }
+    .eko-info-wrapper.has-table {
+        padding: 0 !important;
+        padding-top: 10px !important;
+        background: #fff;
+    }
+    .has-table .md-title {
+        padding-left: 30px;
+    }
+    .eko-info-edit-save {
+        margin-bottom: 20px;
+    }
+    .eko-info-edit-row {
+        height: 50px;
+        font-size: 14px;
+        border-bottom: 1px solid #f9f9f9;
+        line-height: 50px !important;
+    }
+    .eko-info-edit-row.eko-logo {
+        height: auto;
+    }
+    .eko-info-edit-row:last-child {
+        border-bottom: none;
+    }
+    .eko-info-edit {
+        padding: 10px;
+        font-weight: bold;
+        line-height: 30px !important;
+    }
+    .eko-info-edit md-input-container {
+        margin: 0 !important;
+        margin-top: 8px !important;
+        line-height: initial !important;
+        font-weight: normal;
+    }
+    .eko-info-padding {
+        padding: 20px 50px 20px !important;
+    }
+    @media (max-width: 599px){
+        .eko-info-padding {
+            padding: 20px !important;
+        }
+        .eko-info-edit-row {
+            height: auto;
+            padding-top: 10px;
+            line-height: 14px !important;
+            max-height: 70px;
+        }
+        .eko-info-edit-row.eko-logo {
+            max-height: none;
+        }
+        .eko-info-edit {
+            padding: 10px 0 !important;
+            line-height: 20px !important;
+        }
+    }
+    .eko-white-button {
+        background-color: #fff !important;
+        margin-right: 0 !important;
+    }
+    .eko-white-button.md-primary {
+        background-color: rgb(0,150,136) !important;
+    }
+    .eko-info-remove-business {
+        font-size: 12px;
+        color: #9e9e9e;
+        padding: 5px;
+    }
+    .eko-info-remove-business a {
+        text-decoration: none;
+        color: inherit;
+    }
+    .eko-info-remove-business a:focus,
+    .eko-info-remove-business a:hover {
+        color: #000;
+    }
+    .eko-info-remove-business a:active {
+        text-decoration: underline;
+    }
+    .eko-info-change-logo {
+        margin-left: 0 !important;
+    }
+    .eko-border {
+        border: 1px solid;
+    }
+    .eko-business-info .md-title {
+        font-weight: bold !important;
+    }
+    .eko-array-edit-delete {
+        padding-top: 12px;
+    }
+    .eko-array-edit md-input-container {
+        max-height: 40px;
+    }
+</style>
+<div ng-cloak>
+    <md-content class="eko-business-info">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Details">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Business Details</h2>
+                        <div layout="row">
+                            <div ng-show="isEditingDetails">
+                                <md-button ng-click="cancelEditDetails()">
+                                    <md-icon class="material-icons">close</md-icon>
+                                    Cancel
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-button class="md-raised eko-white-button" ng-click="toggleEditingDetails($event)" ng-class="{'md-primary' : isEditingDetails}">
+                                    <md-icon class="material-icons">{{isEditingDetails ? "check" : "edit"}}</md-icon>
+                                    {{isEditingDetails ? "Done Editing" : "Edit"}} Details
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">{{business.name}} Details</h2>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Business Name
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex>{{editDetails.name}}</div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Business Name</label>
+                                        <input type="text" ng-model="editDetails.name">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Agent Code
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex>{{editDetails.agent}}</div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Agent Code</label>
+                                        <input type="text" ng-model="editDetails.agent">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Business PIN
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex>{{editDetails.pin}}</div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Business Name</label>
+                                        <input type="text" ng-model="editDetails.pin">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Currency Code
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex>{{getCurrencyById(editDetails.currency_id).code}}</div>
+                                    <md-input-container ng-show="isEditingDetails" class="select md-block" flex>
+                                        <label>Select Currency Code</label>
+                                        <md-select ng-model="editDetails.currency_id">
+                                            <md-option ng-repeat="currency in currencies" value="{{currency.id}}">
+                                                {{currency.code}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row eko-logo" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Business Logo
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div flex>
+                                        <img width="150" ng-src="{{editDetails.logo.trim().length > 0 ? editDetails.logo : logo_placeholder}}" />
+                                    </div>
+                                    <div ng-show="isEditingDetails">
+                                        <md-button class="eko-info-change-logo eko-border md-primary" ng-click="changeBusinessLogo($event)">
+                                            <md-icon class="material-icons">photo_filter</md-icon>
+                                            Change Business Logo
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Business Slogan
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex>{{editDetails.slogan}}</div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Business Slogan</label>
+                                        <input type="text" ng-model="editDetails.slogan">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Receipt Footnote
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex ng-bind-html="editDetails.receipt_footnote.replace('\n', '<br>')"></div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Receipt Footnote</label>
+                                        <textarea ng-model="editDetails.receipt_footnote"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Invoice Footnote
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex ng-bind-html="editDetails.invoice_footnote.replace('\n', '<br>')"></div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Invoice Footnote</label>
+                                        <textarea ng-model="editDetails.invoice_footnote"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Quotation Footnote
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingDetails" flex ng-bind-html="editDetails.quotation_footnote.replace('\n', '<br>')"></div>
+                                    <md-input-container ng-show="isEditingDetails" flex>
+                                        <label>Edit Quotation Footnote</label>
+                                        <textarea ng-model="editDetails.quotation_footnote"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div layout="row" class="margin-top-10 eko-info-edit-save">
+                            <div flex></div>
+                            <div ng-show="isEditingDetails">
+                                <md-button class="eko-border md-primary" ng-click="saveDetails($event)">
+                                    <md-icon class="material-icons">save</md-icon>
+                                    Save Details
+                                </md-button>
+                            </div>
+                        </div>
+                        <div layout="row" class="eko-info-remove-business">
+                            <div>
+                                <a ng-click="closeBusiness($event)" href>Close Business</a>
+                            </div>
+                            <div flex></div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Contacts">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Contacts</h2>
+                        <div layout="row">
+                            <div ng-show="isEditingContacts">
+                                <md-button ng-click="cancelEditContacts()">
+                                    <md-icon class="material-icons">close</md-icon>
+                                    Cancel
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-button class="md-raised eko-white-button" ng-click="toggleEditingContacts($event)" ng-class="{'md-primary' : isEditingContacts}">
+                                    <md-icon class="material-icons">{{isEditingContacts ? "check" : "edit"}}</md-icon>
+                                    {{isEditingContacts ? "Done Editing" : "Edit"}} Contacts
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper md-whiteframe-1dp" layout="column">
+                            <div layout-gt-xs="row">
+                                <h2 class="md-title" flex>Contact Details</h2>
+                                <md-input-container class="select md-block" style="min-width: 200px">
+                                    <label>Selected branch</label>
+                                    <md-select ng-disabled="isEditingContacts" ng-model="editContactBranch">
+                                        <md-option ng-repeat="branch in editDetails.branches" value="{{$index}}">
+                                            {{branch.name}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Branch Name
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex>{{editDetails.branches[editContactBranch].name}}</div>
+                                    <md-input-container ng-show="isEditingContacts" flex>
+                                        <label>Edit Branch Name</label>
+                                        <input type="text" ng-model="editDetails.branches[editContactBranch].name">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Physical Address
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex ng-bind-html="editDetails.branches[editContactBranch].physical_address.replace('\n', '<br>')"></div>
+                                    <md-input-container ng-show="isEditingContacts" flex>
+                                        <label>Edit Physical Address</label>
+                                        <textarea type="text" ng-model="editDetails.branches[editContactBranch].physical_address"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Postal Address
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex ng-bind-html="editDetails.branches[editContactBranch].postal_address.replace('\n', '<br>')"></div>
+                                    <md-input-container ng-show="isEditingContacts" flex>
+                                        <label>Edit Postal Address</label>
+                                        <textarea type="text" ng-model="editDetails.branches[editContactBranch].postal_address"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row eko-logo" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Phone Numbers
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex>{{editDetails.branches[editContactBranch].phones.join(", ")}}</div>
+                                    <div ng-show="isEditingContacts" layout="column" class="eko-array-edit" flex>
+                                        <div layout="row" ng-repeat="phone in editDetails.branches[editContactBranch].phones track by $index">
+                                            <md-input-container flex>
+                                                <label>Edit Number</label>
+                                                <input type="text" ng-model="editDetails.branches[editContactBranch].phones[$index]">
+                                            </md-input-container>
+                                            <div class="eko-array-edit-delete">
+                                                <md-button ng-click="editDetails.branches[editContactBranch].phones.splice($index, 1)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <md-button ng-click="editDetails.branches[editContactBranch].phones.push('')" class="eko-border">
+                                                <md-icon class="material-icons">add</md-icon>
+                                                Add Phone Number
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row eko-logo" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Email Addresses
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex>{{editDetails.branches[editContactBranch].emails.join(", ")}}</div>
+                                    <div ng-show="isEditingContacts" layout="column" class="eko-array-edit" flex>
+                                        <div layout="row" ng-repeat="phone in editDetails.branches[editContactBranch].emails track by $index">
+                                            <md-input-container flex>
+                                                <label>Edit Email</label>
+                                                <input type="text" ng-model="editDetails.branches[editContactBranch].emails[$index]">
+                                            </md-input-container>
+                                            <div class="eko-array-edit-delete">
+                                                <md-button ng-click="editDetails.branches[editContactBranch].emails.splice($index, 1)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <md-button ng-click="editDetails.branches[editContactBranch].emails.push('')" class="eko-border">
+                                                <md-icon class="material-icons">add</md-icon>
+                                                Add Email Address
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row eko-logo" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Websites
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex>{{editDetails.branches[editContactBranch].websites.join(", ")}}</div>
+                                    <div ng-show="isEditingContacts" layout="column" class="eko-array-edit" flex>
+                                        <div layout="row" ng-repeat="phone in editDetails.branches[editContactBranch].websites track by $index">
+                                            <md-input-container flex>
+                                                <label>Edit Website</label>
+                                                <input type="text" ng-model="editDetails.branches[editContactBranch].websites[$index]">
+                                            </md-input-container>
+                                            <div class="eko-array-edit-delete">
+                                                <md-button ng-click="editDetails.branches[editContactBranch].websites.splice($index, 1)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <md-button ng-click="editDetails.branches[editContactBranch].websites.push('')" class="eko-border">
+                                                <md-icon class="material-icons">add</md-icon>
+                                                Add Website
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eko-info-edit-row eko-logo" layout-gt-xs="row">
+                                <div class="eko-info-text" flex>
+                                    Social Site
+                                </div>
+                                <div layout="column" class="eko-info-edit" flex>
+                                    <div ng-show="!isEditingContacts" flex>{{editDetails.branches[editContactBranch].socials.join(", ")}}</div>
+                                    <div ng-show="isEditingContacts" layout="column" class="eko-array-edit" flex>
+                                        <div layout="row" ng-repeat="phone in editDetails.branches[editContactBranch].socials track by $index">
+                                            <md-input-container flex>
+                                                <label>Edit Social Site</label>
+                                                <input type="text" ng-model="editDetails.branches[editContactBranch].socials[$index]">
+                                            </md-input-container>
+                                            <div class="eko-array-edit-delete">
+                                                <md-button ng-click="editDetails.branches[editContactBranch].socials.splice($index, 1)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <md-button ng-click="editDetails.branches[editContactBranch].socials.push('')" class="eko-border">
+                                                <md-icon class="material-icons">add</md-icon>
+                                                Add Social Site
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div layout="row" class="margin-top-10 eko-info-edit-save">
+                            <div flex></div>
+                            <div ng-show="isEditingContacts">
+                                <md-button class="eko-border md-primary" ng-click="saveContacts($event)">
+                                    <md-icon class="material-icons">save</md-icon>
+                                    Save Contacts
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="User Groups">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>User Groups</h2>
+                        <div>
+                            <md-button class="md-raised eko-white-button" ng-click="newUserGroup($event)">
+                                <md-icon class="material-icons">add</md-icon>
+                                New Group
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper has-table md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">Showing {{business_user_groups.length}} groups</h2>
+                            <div class="eko-table-wrapper">
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="nowrap">Group Name</th>
+                                        <th class="nowrap">Permissions</th>
+                                        <th class="nowrap">Date Modified</th>
+                                        <th class="nowrap">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in business_user_groups track by item.id">
+                                        <td class="nowrap">{{item.name}}</td>
+                                        <td ng-bind-html="displayPermissions(item.permissions)"></td>
+                                        <td class="nowrap">{{item.timestamp}}</td>
+                                        <td class="nowrap">
+                                            <div layout="row">
+                                                <div>
+                                                    <md-button ng-click="editUserGroup($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">edit</md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <div>
+                                                    <md-button ng-click="deleteUserGroup($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">delete</md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Users">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Users</h2>
+                        <div>
+                            <md-button class="md-raised eko-white-button" ng-click="newUser($event)">
+                                <md-icon class="material-icons">add</md-icon>
+                                New User
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper has-table md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">Showing {{business_users.length}} users</h2>
+                            <div class="eko-table-wrapper">
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="nowrap">Email</th>
+                                        <th class="nowrap">Groups</th>
+                                        <th class="nowrap">Branches</th>
+                                        <th class="nowrap">Status</th>
+                                        <th class="nowrap">Notes</th>
+                                        <th class="nowrap">Date Modified</th>
+                                        <th class="nowrap">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in business_users track by item.id">
+                                        <td class="nowrap">{{item.email}}</td>
+                                        <td ng-bind-html="userItems(item.groups,'name')"></td>
+                                        <td ng-bind-html="userItems(item.branches,'name')"></td>
+                                        <td class="nowrap">{{item.status}}</td>
+                                        <td ng-bind-html="item.notes.replace('\n', '<br>')"></td>
+                                        <td class="nowrap">{{item.timestamp}}</td>
+                                        <td class="nowrap">
+                                            <div layout="row">
+                                                <div>
+                                                    <md-button ng-click="editUser($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">edit</md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <div>
+                                                    <md-button ng-click="deleteUser($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">delete</md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Branches">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Branches</h2>
+                        <div>
+                            <md-button class="md-raised eko-white-button" ng-click="newBranch($event)">
+                                <md-icon class="material-icons">add</md-icon>
+                                New Branch
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper has-table md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">Showing {{editDetails.branches.length}} branches</h2>
+                            <div class="eko-table-wrapper">
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="nowrap">Branch Name</th>
+                                        <th class="nowrap">Physical Address</th>
+                                        <th class="nowrap">Postal Address</th>
+                                        <th class="nowrap">Phone Numbers</th>
+                                        <th class="nowrap">Email Addresses</th>
+                                        <th class="nowrap">Websites</th>
+                                        <th class="nowrap">Social Sites</th>
+                                        <th class="nowrap">Modified On</th>
+                                        <th class="nowrap">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in editDetails.branches track by item.id">
+                                        <td class="nowrap">{{item.name}}</td>
+                                        <td>{{item.physical_address}}</td>
+                                        <td>{{item.postal_address}}</td>
+                                        <td>{{item.phones.join(", ")}}</td>
+                                        <td>{{item.emails.join(", ")}}</td>
+                                        <td>{{item.websites.join(", ")}}</td>
+                                        <td>{{item.socials.join(", ")}}</td>
+                                        <td class="nowrap">{{item.timestamp}}</td>
+                                        <td>
+                                            <div layout="row">
+                                                <div>
+                                                    <md-button ng-click="editBranch($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">edit</md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <div>
+                                                    <md-button ng-click="deleteBranch($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">delete</md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Taxes">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Taxes</h2>
+                        <div>
+                            <md-button class="md-raised eko-white-button" ng-click="newTax($event)">
+                                <md-icon class="material-icons">add</md-icon>
+                                New Tax
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper has-table md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">Showing {{business_taxes.length}} items</h2>
+                            <div class="eko-table-wrapper">
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="nowrap">Tax Name</th>
+                                        <th class="nowrap">Rate</th>
+                                        <th class="nowrap">Edit Time</th>
+                                        <th class="nowrap">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in business_taxes track by item.id">
+                                        <td class="nowrap">{{item.name}}</td>
+                                        <td class="nowrap">{{item.rate}}</td>
+                                        <td class="nowrap">{{item.timestamp}}</td>
+                                        <td>
+                                            <div layout="row">
+                                                <div>
+                                                    <md-button ng-click="editTax($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">edit</md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <div>
+                                                    <md-button ng-click="deleteTax($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">delete</md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Payment Accounts">
+                <md-content class="eko-info-padding">
+                    <div layout-gt-xs="row">
+                        <h2 class="no-margin no-padding" flex>Manage Cash Accounts</h2>
+                        <div>
+                            <md-button class="md-raised eko-white-button" ng-click="newCashAccount($event)">
+                                <md-icon class="material-icons">add</md-icon>
+                                New Account
+                            </md-button>
+                        </div>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="eko-info-wrapper has-table md-whiteframe-1dp" layout="column">
+                            <h2 class="md-title">Showing {{business_cash_accounts.length}} items</h2>
+                            <div class="eko-table-wrapper">
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th class="nowrap">Type</th>
+                                        <th class="nowrap">Account Provider</th>
+                                        <th class="nowrap">Account Holder</th>
+                                        <th class="nowrap">Account No.</th>
+                                        <th class="nowrap">Date Modified</th>
+                                        <th class="nowrap">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in business_cash_accounts track by item.id">
+                                        <td class="nowrap">{{item.type_name}}</td>
+                                        <td class="nowrap">{{item.account_provider}}</td>
+                                        <td class="nowrap">{{item.account_holder}}</td>
+                                        <td class="nowrap">{{item.account_number}}</td>
+                                        <td class="nowrap">{{item.timestamp}}</td>
+                                        <td>
+                                            <div layout="row">
+                                                <div>
+                                                    <md-button ng-click="editCashAccount($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">edit</md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <div>
+                                                    <md-button ng-click="deleteCashAccount($index, $event)" class="tiny-icon-button">
+                                                        <md-icon class="material-icons">delete</md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

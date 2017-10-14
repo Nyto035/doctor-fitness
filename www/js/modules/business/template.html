@@ -1,0 +1,159 @@
+<md-toolbar class="md-hue-2" style="color: #555; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24)">
+	<div class="md-toolbar-tools">
+		<h2 flex style="font-weight: bold">Preview</h2>
+		<md-button ng-click="printDocument($event)" class="md-primary">
+	  		<md-icon class="material-icons">print</md-icon> Print Document
+		</md-button>
+		<md-button ng-click="emailDocument($event)" class="md-primary">
+	  		<md-icon class="material-icons">email</md-icon> Send To Email
+		</md-button>
+		<md-button ng-click="goBack()" class="md-raised">
+	  		<md-icon class="material-icons">arrow_back</md-icon> Back
+		</md-button>
+	</div>
+</md-toolbar>
+<md-content layout-padding>
+	<div ng-hide="document != null" style="padding: 10px; text-align: center; font-size: 14px; font-family: Helvetica, Arial; color: #888;">Loading...</div>
+	<div id="document_wrapper" ng-show="document != null" class="md-whiteframe-1dp" style="width: 620px; padding: 40px; background: #fff; margin: 10px auto; font-family: Helvetica, Arial;">
+		<span style="font-size: 9px;"></span>
+		<table style="width: 100%; border-bottom: 1px solid #eee;" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td valign="top" style="text-align: left;">
+					<h1 style="margin: 0; text-transform: uppercase; color: #009688;">{{typeName}}</h1>
+				</td>
+				<td valign="top" style="text-align: right;">
+					<div style="display: inline-block; text-align: right; font-size: 11px;">
+						<p>
+							<img style="width:30px;height:30px;" ng-src="{{business.logo}}">
+							<div style="font-size:14px;font-weight:bold;">{{business.name.toUpperCase()}}</div>
+							<div>{{business.branches[0].postal_address}}</div>
+							<div>{{business.branches[0].physical_address}}</div>
+							<div>{{business.branches[0].emails.join(",")}}</div>
+							<div>{{business.branches[0].phones.join(",")}}</div>
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table style="margin-top: 10px; width: 100%; padding-bottom: 20px;" border="0" cellpadding="10" cellspacing="0">
+			<tr>
+				<td valign="top" style="text-align: left; font-size: 11px;">
+					<strong> {{type == 'invoice' ? 'Invoice To' : 'Receipt To'}}</strong>
+					<p>{{document.client}}</p>
+				</td>
+				<td valign="top" style="text-align: right; font-size: 11px;">
+					<strong>Details</strong>
+					<p>
+						<div><strong>Date:</strong> {{document.date}}</div>
+						<div><strong>ID:</strong> {{type == 'invoice' ? document.invoice_reference : document.receipt_reference}}</div>
+						<p>
+						<div ng-show="document.amount_due > 0" style="font-weight:bolder;font-size:15px;"><strong>Amount Due: </strong> {{document.amount_due.addCommas()}}</div></p>
+						<div ng-show="document.payment_amount_real > 0" style="font-weight:bolder;font-size:15px;"><strong>Amount Paid: </strong> {{document.payment_amount_real.addCommas()}}</div>
+					</p>
+				</td>
+			</tr>
+		</table>
+		<table style="
+			width: 100%;
+			border: 1px solid #eee;
+			border-radius: 2px;
+			overflow: hidden;"
+			border="0" cellpadding="0" cellspacing="0">
+			<style>
+				.inv_items {
+					background: #fff;
+					font-size: 12px;
+				}
+				.inv_items td {
+					padding: 10px;
+					border-right: 1px solid #eee;
+					border-bottom: 1px solid #eee;
+					text-align: center;
+				}
+				.inv_items td:last-child {
+					border-right: none;
+					text-align: right;
+				}
+				.inv_items:last-child td {
+					border-bottom: none;
+				}
+				.inv_items td:nth-child(2) {
+					text-align: left;
+				}
+				.inv_items:nth-child(even) {
+					background: #fafafa;
+				}
+				.inv_title {
+					background: #eee;
+					font-size: 12px;
+					font-weight: bold;
+				}
+				.inv_title th {
+					padding: 10px;
+					border-bottom: 1px solid #ddd;
+					border-right: 1px solid #ddd;
+				}
+				.inv_title th:nth-child(2){
+					text-align: left;
+				}
+				.inv_title th:last-child {
+					border-right: none;
+					text-align: right;
+				}
+			</style>
+			<thead>
+				<tr class="inv_title">
+					<th>#</th>
+					<th >Product</th>
+					<th>Unit Cost</th>
+					<th>Quantity</th>
+					
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="inv_items" ng-repeat="item in document.items track by $index">
+					<td>{{$index + 1}}</td>
+					<td>{{item.itemname}}</td>
+					<td>{{item.selling_price.addCommas()}}</td>
+					<td>{{item.qty}}</td>
+					
+					<td>{{item.totals_after_tax.addCommas()}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table style="width: 100%; margin-top: 20px;" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td>
+					
+				</td>
+				<td style="font-size: 12px; text-align: right;" valign="top">
+					<div style="margin-top: 5px;"><strong>Discount: </strong> {{document.discount.addCommas()}}</div>
+					<div style="margin-top: 5px;"><strong>Tax Totals: </strong> {{document.total_tax.addCommas()}}<br></div>
+					<div style="margin-top: 5px; font-size: 14px;">
+						<strong>Grand Total: </strong> {{document.totals.addCommas()}}
+					</div>
+				</td>
+			</tr>
+			
+
+		</table>
+	    <table style="width: 100%; margin-top: 20px;" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td style="font-size: 12px; text-align: left;">
+					
+					</div>
+				<td>
+					<h2 style="font-weight: bold; font-size: 16px; color: #555">{{footnote}}</h2>
+					
+				</td>
+				<td style="font-size: 12px; text-align: right;">
+					
+					</div>
+				</td>
+			</tr>
+			
+
+		</table>
+	</div>
+</md-content>

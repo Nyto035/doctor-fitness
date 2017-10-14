@@ -1,0 +1,70 @@
+<style type="text/css">
+    .eko-edit-items {
+        width: 400px;
+        padding: 20px;
+    }
+    .eko-edit-items md-input-container {
+        margin: 10px 0 5px 0 !important;
+        max-height: 40px;
+    }
+    .eko-edit-items md-input-container.select {
+        margin: 15px 0 15px !important;
+    }
+</style>
+<md-dialog aria-label="Edit item">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Inter-Account Transfer</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-edit-items">
+                <md-input-container class="md-block" flex>
+                    <label style="right: auto !important;">Transaction Date</label>
+                    <md-datepicker ng-model="edit.transaction_date"></md-datepicker>
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+                    <label>Pay From Account</label>
+                    <md-select ng-model="edit.account_from_id">
+                        <md-option ng-repeat="item in cash_accounts" value="{{item.id}}">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+                    <label>Pay Into Account</label>
+                    <md-select ng-model="edit.account_to_id">
+                        <md-option ng-repeat="item in cash_accounts" value="{{item.id}}">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Amount</label>
+                    <input type="number" step="0.01" ng-model="edit.amount">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Notes</label>
+                    <textarea type="text" ng-model="edit.reason"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <md-button type="button" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                    <md-icon class="material-icons">save</md-icon>
+                    Save Details
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

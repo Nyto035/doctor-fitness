@@ -1,0 +1,74 @@
+<style type="text/css">
+    .eko-form-view {
+        margin-bottom: 20px;
+    }
+    .eko-form-view md-input-container {
+        margin: 15px 20px 0 0 !important;
+    }
+    .eko-info {
+        color: #888;
+    }
+</style>
+<div layout="column" layout-fill layout-padding flex>
+    <div class="padding-20 eko-form-view">
+        <h1 class="md-display-2 no-margin no-padding">New Business</h1>
+        <p class="no-margin no-padding">Please fill in the details for your new business</p>
+        <div layout-gt-xs="row" class="margin-top-20">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Business Name</label>
+                <input ng-model="edit.name">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Select Business Plan</label>
+                <md-select ng-model="edit.plan">
+                    <md-option ng-repeat="plan in pricing" value="{{plan.id}}">
+                        {{plan.price}} {{plan.currency}} - {{plan.name}} Plan
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Agent Code</label>
+                <input ng-model="edit.agent">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Business PIN</label>
+                <input ng-model="edit.pin">
+            </md-input-container>
+            <md-input-container flex-gt-xs>
+                <label>Main Currency</label>
+                <md-select ng-model="edit.currency">
+                    <md-option ng-repeat="currency in currencies" value="{{currency.id}}">
+                        ({{currency.code}}) {{currency.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Physical Location</label>
+                <textarea ng-model="edit.address" rows="2" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Postal Address</label>
+                <textarea ng-model="edit.postal" rows="2" md-select-on-focus></textarea>
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Business Phone Numbers (Separate with comma)</label>
+                <textarea ng-model="edit.phones" rows="2" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+                <label>Business Email Addresses (Separate with comma)</label>
+                <textarea ng-model="edit.emails" rows="2" md-select-on-focus></textarea>
+            </md-input-container>
+        </div>
+        <p class="eko-info">You can add more details such as slogan, logo, invoices footnotes and many more in the business details when you open the business</p>
+        <md-button ng-click="saveEdit($event)" class="md-primary">
+            <md-icon class="material-icons">save</md-icon>
+            Save New Business
+        </md-button>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/input.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <!-- <script>window.phonegap = {}</script> -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+
+
+    <!-- your app's js -->
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/ng-idle/angular-idle.js"></script>
+    <script src="js/auth/sil-datalayer.js"></script>
+    <script src="js/auth/sil-auth-backend.js"></script>
+    <script src="js/auth/module.js"></script>
+    <script src="js/auth/oauth.js"></script>
+    <script src="js/auth/states.js"></script>
+    <script src="js/auth/controllers.js"></script>
+    <script src="js/app.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/services/module.js"></script>
+    <script src="js/services/redirect_to.js"></script>
+    <script src="js/services/business_form.js"></script>
+    <script src="js/services/call_api.js"></script>
+    <script src="js/services/users.js"></script>
+    <script src="js/controllers/module.js"></script>
+    <script src="js/controllers/business.js"></script>
+    <script src="js/controllers/business_information.js"></script>
+    <script src="js/controllers/purchase.js"></script>
+    <script src="js/database/database.js"></script>
+    <script src="js/controllers/business_expenses.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+  </head>
+
+  <body ng-app="starter">
+    <ion-nav-view name="content">
+
+    </ion-nav-view>
+  </body>
+</html>

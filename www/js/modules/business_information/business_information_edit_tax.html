@@ -1,0 +1,47 @@
+<style type="text/css">
+    .eko-info-edit-modal {
+        width: 450px;
+        padding: 20px;
+    }
+    .eko-info-edit-modal md-input-container {
+        max-height: 45px !important;
+        margin: 10px 0 !important;
+    }
+    .eko-info-edit-modal md-checkbox {
+        margin-bottom: 4px !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Tax</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-info-edit-modal">
+                <md-input-container flex>
+                    <label>Tax Name</label>
+                    <input type="text" ng-model="edit.name">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Tax Rate</label>
+                    <input type="number" step="0.01" ng-model="edit.rate">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                Save Details
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

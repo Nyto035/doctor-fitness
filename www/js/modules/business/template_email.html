@@ -1,0 +1,47 @@
+<style type="text/css">
+    .eko-sale-dialog-form md-input-container {
+        margin: 0 !important;
+    }
+    md-input-container .md-placeholder, md-input-container label:not(.md-no-float):not(.md-container-ignore) {
+        margin-left: 7px !important;
+    }
+</style>
+<md-dialog aria-label="Email Document" style="width: 450px;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><md-icon class="material-icons">attachment</md-icon> Email {{type}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="overflow-x: hidden">
+            <div class="eko-sale-dialog-form margin-top-10" layout="column" layout-padding>
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input type="text" ng-model="email">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Subject</label>
+                    <input type="text" ng-model="subject">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Accompanying Message</label>
+                    <textarea ng-model="message"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>        
+        <md-dialog-actions layout="row">
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>            
+            <md-button class="md-raised md-primary" ng-click="send($event)">
+                <md-icon class="material-icons">near_me</md-icon>
+                Send
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

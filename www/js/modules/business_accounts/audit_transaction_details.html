@@ -1,0 +1,67 @@
+<style type="text/css">
+    .eko-sale-dialog-form md-input-container {
+        margin: 0 !important;
+    }
+    .eko-details-table {
+        margin: 10px 0 !important;
+    }
+    .eko-details-table td {
+        padding: 5px 0 2px !important;
+    }
+    .eko-details-table td:first-child {
+        font-weight: bold;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Transaction Details</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div id="checkout-wrapper" class="md-dialog-content" style="width: 500px">
+                <div layout="column" class="eko-sale-dialog-form">
+                    <div flex layout="row">
+                        <table class="eko-details-table" cellspacing="0" cellpadding="0" border="0">
+                            <tr><td>Transaction Date</td><td>{{details.transaction_date}}</td></tr>
+                            <tr><td>Transaction Type</td><td>{{details.transaction_type_name}}</td></tr>
+                            <tr><td>Client Name</td><td>{{details.transaction_client_name}}</td></tr>
+                            <tr ng-show="details.tax_totals != 0"><td>Total Amount</td><td>{{details.totals.addCommas()}}</td></tr>
+                            <tr ng-show="details.payment > 0"><td>Amount Paid</td><td>{{details.payment > details.totals ? details.totals.addCommas() : details.payment.addCommas()}}</td></tr>
+                            <tr ng-show="details.tax_totals > 0"><td>Tax Totals</td><td>{{details.tax_totals.addCommas()}}</td></tr>
+                            <tr ng-show="details.notes.trim().length > 0"><td>Notes</td><td>{{details.notes}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="md-whiteframe-1dp eko-payment-list">
+                        <h2 class="md-title" style="margin-left: 10px;">Journal Entries</h2>
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th class="nowrap">Account Name</th>
+                                <th class="nowrap">Debit</th>
+                                <th class="nowrap">Credit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in details.entries">
+                                <td class="nowrap" style="max-width: 100px;">{{item.account_name}}</td>
+                                <td class="nowrap">{{item.type == 1 ? item.amount.addCommas() : 0}}</td>
+                                <td class="nowrap">{{item.type == 2 ? item.amount.addCommas() : 0}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <span flex></span>
+                <md-button type="button" ng-click="cancel()">
+                    Close
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

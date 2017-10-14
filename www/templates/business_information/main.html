@@ -1,0 +1,78 @@
+<ion-view title='{{business.name}}' animation="fade-in-up">
+  <ion-content style="background-color: #edecec;">
+    <ion-card>
+        <div class="list padding col-12 pad-t-30 menu-cont" style="position: relative;display: inline-block;">
+            <div class="col-x-12" style="position: relative;" ng-if='loaded'>
+                <div class="showbox">
+                    <div class="circular-loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="login-menu col-xs-12" ng-if="!loaded">
+                <div class="col-12 profile-cont">
+                    <div class="details-cont circular-cont">
+                        <div class="col-12 msg-icon" ng-class="{'msg-icon-flex': business_details.logo, 'msg-icon': !business_details.logo }">
+                            <i class="icon ion-person-stalker" ng-if="business_details.logo === ''"></i>
+                            <img src="{{business_details.logo}}" style="height: 85px;width: 85px; border-radius: 50%;"
+                            ng-if="business_details.logo !== ''">
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-cont col-12">
+                    <b>{{business_details.name}}</b>
+                </div>
+            </div>
+            <!-- Basic Details -->
+            <div class="login-menu col-xs-12" ng-if="!loaded">
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12 text-success pad-t-10">
+                            <b><small>Business Profile</small></b>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                        <!-- <button class="button button-balanced btn-rnd btn-sm"
+                        ng-click="openModal($event)">
+                            <i class="icon ion-edit"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <div class="desc-cont col-12">
+                    <div class="text-cont col-12" ng-repeat="field in profileFields" ng-if="business_details[field.key]">
+                        <div class="col-12 label text-muted"><small>{{field.label}}</small></div>
+                        <div class="col-12 value">{{business_details[field.key]}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Details -->
+            <div class="login-menu col-xs-12 margin-t-20" ng-if="!loaded">
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12 text-success pad-t-10">
+                            <b><small>Contact Details</small></b>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                        <!-- <button class="button button-balanced btn-rnd btn-sm"
+                        ng-click="openModal($event)">
+                            <i class="icon ion-edit"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <div class="desc-cont col-12">
+                    <div class="text-cont col-12" ng-repeat="field in contactFields" 
+                    ng-if="showOrHide(business_details.branches[0][field.key])">
+                        <div class="col-12 label text-muted"><small>{{field.label}}</small></div>
+                        <div class="col-12 value">{{showOrHide(business_details.branches[0][field.key])}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+
+  </ion-content>
+
+</ion-view>

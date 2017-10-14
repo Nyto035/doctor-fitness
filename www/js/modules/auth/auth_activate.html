@@ -1,0 +1,30 @@
+<style>
+    .eko-auth-box {
+        margin: 50px auto !important;
+        max-width: 400px;
+    }
+    .eko-activate-loading {
+        padding: 10px;
+    }
+    .eko-activate-loading md-icon {
+        color: #f87b00;
+    }
+</style>
+<div layout="column" layout-fill layout-padding>
+    <div>
+        <div class="md-whiteframe-1dp eko-auth-box">
+            <div class="padding-10">
+                <h1 class="md-display-2 no-margin">Activate Account</h1>
+                <p>Activating your account...</p>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" layout-padding>
+                <div flex></div>
+                <div class="eko-activate-loading">
+                    <md-icon ng-show="failed" class="material-icons">warning</md-icon>
+                    <md-progress-circular ng-show="!failed" md-diameter="20px" md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

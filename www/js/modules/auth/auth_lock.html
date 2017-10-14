@@ -1,0 +1,51 @@
+<style>
+    .eko-auth-box {
+        margin: 10px auto !important;
+        max-width: 300px;
+    }
+    .eko-auth-box md-input-container {
+        margin: 10px 0 0 !important;
+        max-height: 40px;
+    }
+    .eko-auth-box p {
+        font-size: 15px;
+        color: #888;
+    }
+    .eko-auth-button {
+        margin: 10px 0 5px !important;
+    }
+    .eko-auth-box-lock md-icon {
+        width: 120px;
+        height: 120px;
+        font-size: 120px;
+        line-height: 120px;
+    }
+    .eko-auth-box-lock {
+        text-align: center;
+    }
+</style>
+<div layout="column" layout-fill layout-padding>
+    <div>
+        <div class="eko-auth-box-lock">
+            <md-icon class="material-icons">verified_user</md-icon>
+        </div>
+        <div class="md-whiteframe-1dp eko-auth-box">
+            <div class="padding-10" layout="column">
+                <p>Session locked by {{lockedUser}}</p>
+                <md-input-container flex>
+                    <label>Enter login password to unlock</label>
+                    <input ng-model="password">
+                </md-input-container>
+                <div layout="row" flex>
+                    <div flex></div>
+                    <div>
+                        <md-button class="eko-auth-button" ng-click="unlock($event)">
+                            <md-icon class="material-icons">lock_open</md-icon>
+                            Unlock
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

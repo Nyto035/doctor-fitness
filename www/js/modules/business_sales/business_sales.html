@@ -1,0 +1,161 @@
+<style type="text/css">
+    .eko-sales-form md-input-container {
+        margin: 12px 0 5px 0 !important;
+    }
+    .eko-sale-row-item {
+        margin-top: 12px !important;
+        margin-right: 5px !important;
+        margin-bottom: 2px !important;
+    }
+    .eko-sale-row-item:last-child {
+        margin-right: 0 !important;
+    }
+    .eko-sales-table-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .eko-sales-totals {
+        padding: 10px;
+        text-align: right;
+    }
+    .eko-sale-row-items {
+        margin-top: -3px;
+        padding-left: 10px;
+    }
+    .eko-border-button {
+        border: 1px solid;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="eko-sales-wrapper padding-20" layout="column">
+        <div layout="row" class="padding-10">
+            <h2 class="no-margin no-padding" flex>Sales Transaction Form</h2>
+            <div>
+                <md-button ui-sref="dashboard.business.business_sales_list">
+                    <md-icon class="material-icons">list</md-icon>
+                    Sales List
+                </md-button>
+            </div>
+        </div>
+        <div class="margin-top-10 padding-20 eko-sales-form">
+            <div layout="row">
+                <md-autocomplete
+                        md-no-cache="true"
+                        md-selected-item="sale_customer"
+                        md-search-text="sale_query"
+                        md-search-text-change="searchCustomerQueryChange(sale_query)"
+                        md-selected-item-change="saleCustomerChange(customer)"
+                        md-items="customer in searchCustomer()"
+                        md-item-text="customer.name"
+                        md-min-length="0"
+                        placeholder="Search Customer" flex>
+                    <md-item-template>
+                        <span md-highlight-text="sale_query" md-highlight-flags="^i">{{customer.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        New Customer: <strong>{{sale_query}}</strong>
+                    </md-not-found>
+                </md-autocomplete>
+                <div flex-gt-xs></div>
+            </div>
+            <div class="margin-top-10"></div>
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label style="right: auto !important;">Transaction Date</label>
+                    <md-datepicker ng-model="transaction_date"></md-datepicker>
+                </md-input-container>
+                <div flex-gt-xs></div>
+            </div>
+            <div layout="column">
+                <div class="eko-sales-table-wrapper md-whiteframe-1dp">
+                    <table class="simple-ng-table condensed">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>VAT</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="sale_item in items">
+                            <td class="nowrap">{{sale_item.name}}</td>
+                            <td class="nowrap">{{sale_item.qty}}</td>
+                            <td class="nowrap">{{sale_item.price}}</td>
+                            <td class="nowrap">{{sale_item.discount}}</td>
+                            <td class="nowrap">{{sale_item.tax_amount}}</td>
+                            <td class="nowrap">{{sale_item.total}}</td>
+                            <td class="nowrap">
+                                <md-button ng-click="itemDelete($index)" class="tiny-icon-button">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div layout="row" layout-align="end start">
+                        <div style="padding: 12px;font-size: 12px;color: #afafaf;" flex>
+                            Items Count {{items.length}}
+                        </div>
+                        <div class="eko-sales-totals">
+                            <strong>Total: {{items_total.addCommas()}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout-gt-xs="row" class="margin-top-20">
+                <md-autocomplete
+                        class="eko-sale-row-select-item"
+                        md-no-cache="true"
+                        md-selected-item="sale_output_item"
+                        md-search-text="sale_output_query"
+                        md-search-text-change="saleOutputQueryTextChange(sale_output_query)"
+                        md-selected-item-change="saleOutputItemChange(output)"
+                        md-items="output in searchSaleOutputItem()"
+                        md-item-text="output.name"
+                        md-min-length="0"
+                        placeholder="Search item to add" flex>
+                    <md-item-template>
+                        <span md-highlight-text="sale_output_query" md-highlight-flags="^i">{{output.name}} {{output.selling_price.addCommas()}} /=</span>
+                    </md-item-template>
+                    <md-not-found>
+                        New Item: <strong>{{sale_output_query}}</strong>
+                    </md-not-found>
+                </md-autocomplete>
+                <div layout-gt-xs="row" layout-xs="column" flex class="eko-sale-row-items">
+                    <md-input-container class="eko-sale-row-item" flex-xs>
+                        <label>Qty</label>
+                        <input type="number" step="0.01" ng-model="item.qty">
+                    </md-input-container>
+                    <md-input-container class="eko-sale-row-item" flex-xs>
+                        <label>Price</label>
+                        <input type="number" step="0.01" ng-model="item.price">
+                    </md-input-container>
+                    <md-input-container class="eko-sale-row-item" flex-xs>
+                        <label>Discount</label>
+                        <input type="number" step="0.01" ng-model="item.discount">
+                    </md-input-container>
+                    <md-input-container class="eko-sale-row-item" flex-xs>
+                        <label>Total</label>
+                        <input ng-model="item.total" disabled>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row">
+                <md-button ng-click="itemAdd($event)" class="md-primary eko-border-button">
+                    <md-icon class="material-icons">add</md-icon>
+                    Add Item
+                </md-button>
+                <div flex></div>
+                <md-button ng-click="processSale($event)" class="md-primary md-raised">
+                    <md-icon class="material-icons">check</md-icon>
+                    Process Transaction
+                </md-button>
+            </div>
+            <div style="margin-bottom: 100px"></div>
+        </div>
+    </div>
+</div>

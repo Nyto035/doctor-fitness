@@ -1,0 +1,85 @@
+<ion-view title='{{business.name}}' animation="fade-in-up">
+  <ion-content style="background-color: #edecec;">
+    <ion-card>
+        <div class="list padding pad-t-30 menu-cont" style="position: relative;">
+            <div class="login-menu">
+                <!-- <div class="form-logo">
+                </div> -->
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12">
+                            <b>Sales List</b>
+                        </div>
+                        <div class="col-xs-12 pad-t-5">
+                            <small>Showing Page <b>{{business_data.pages ? business_data.pages : 0}}</b></small>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                        <button class="button button-balanced btn-rnd"
+                        ng-click="openModal($event)">
+                            <i class="icon ion-plus-round"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 grid-lines flex" ng-repeat="sale in business_data.page_data"
+                ng-click="openReceiptModal($event, sale)">
+                    <!-- <div class="line-icon col-2">
+                        <div class="icon-cont">
+                            <i class="icon ion-clipboard"></i>
+                        </div>
+                    </div> -->
+                    <div class="line-details col-11 pad-l-10">
+                        <div class="col-12">
+                            <small><b>{{sale.customer_names}}</b></small>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12">
+                                <small><span>Amount:</span> {{sale.amount | currency: 'KES '}}</small>
+                            </div>
+                            <div class="col-12">
+                                <small>
+                                <span>
+                                    <i class="icon ion-calendar"></i>
+                                </span>
+                                {{sale.date | date: 'mediumDate'}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-action col-2 pad-l-5">
+                        <!-- TODO: Bring back once there is a sales detail view -->
+                        <!-- <a ui-sref="app.sales.details({'sales_id': sale.id})">
+                            <i class="icon ion-chevron-right"></i>
+                        </a> -->
+                        <a ng-click="receivePay(sale)" class="delete-btn"
+                        ng-if="sale.amount_due > 0">
+                            <i class="icon ion-cash text-success" style="font-size: 1.85rem;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 msg-cont" ng-if="!business_data.page_data.length && !loaded">
+                    <div class="col-12 details-cont">
+                        <div class="col-12 msg-icon">
+                            <i class="icon ion-bag"></i>
+                        </div>
+                        <div class="col-12 msg-desc">
+                            <small>No sale recorded yet click add button to start saling products.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-x-12" style="position: relative;" ng-if='loaded'>
+                    <div class="showbox">
+                        <div class="circular-loader">
+                            <svg class="circular" viewBox="25 25 50 50">
+                              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+
+  </ion-content>
+
+</ion-view>

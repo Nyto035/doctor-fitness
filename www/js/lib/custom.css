@@ -1,0 +1,185 @@
+/* global */
+@font-face {
+    font-family: "RobotoBold";
+    src: url("lib/Roboto-Bold.ttf")  format('truetype')
+}
+@font-face {
+    font-family: "RobotoRegular";
+    src: url("lib/Roboto-Regular.ttf")  format('truetype')
+}
+@font-face {
+    font-family: "RobotoThin";
+    src: url("lib/Roboto-Thin.ttf")  format('truetype')
+}
+@font-face {
+    font-family: "RobotoLight";
+    src: url("lib/Roboto-Light.ttf")  format('truetype')
+}
+h1, h2, h3,
+.roboto-thin {
+    font-family: "RobotoThin", Arial, Helvetica, sans-serif !important;
+}
+.roboto-bold {
+    font-family: "RobotoBold", "Arial Black", Gadget, sans-serif !important;
+}
+.roboto-regular {
+    font-family: "RobotoRegular", Arial, Helvetica, sans-serif !important;
+}
+.roboto-light {
+    font-family: "RobotoLight",	Arial, Helvetica, sans-serif !important;
+}
+.no-padding {
+    padding: 0 !important;
+}
+.no-margin {
+    margin: 0 !important;
+}
+.padding-5 {
+    padding: 5px;
+}
+.padding-10 {
+    padding: 10px;
+}
+.padding-20 {
+    padding: 20px;
+}
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+.nowrap {
+    white-space: nowrap !important;
+}
+
+/* override datepicker defaults */
+.datepicker-label {
+  right: auto !important;
+}
+.md-datepicker-button {
+    display: none !important;
+}
+.md-datepicker-triangle-button {
+    right: 5px !important;
+}
+.md-datepicker-input {
+    max-width: none !important;
+}
+.md-datepicker-input-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* simple ng table */
+.simple-ng-table {
+    position: relative;
+    border-color: rgba(0,0,0,.12);
+    border-collapse: collapse;
+    font-size: 14px;
+    background-color: #fff;
+    color: #757575;
+    width: 100%;
+}
+.simple-ng-table thead {
+    padding-bottom: 3px;
+}
+.simple-ng-table thead tr {
+    background: #fbfbfb;
+}
+.simple-ng-table th {
+    position: relative;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    font-weight: 800;
+    line-height: 24px;
+    letter-spacing: 0;
+    height: 48px;
+    font-size: inherit;
+    color: rgba(0,0,0,.54);
+    box-sizing: border-box;
+    padding: 0 18px 12px 18px;
+    text-align: left;
+}
+.simple-ng-table.condensed th {
+    height: auto;
+    padding: 10px;
+}
+.simple-ng-table tbody tr {
+    height: 48px;
+    position: relative;
+    transition-duration: .28s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-property: background-color;
+}
+.simple-ng-table.condensed tbody tr {
+    height: auto;
+}
+.simple-ng-table tbody tr:hover {
+    background-color: #eee;
+}
+.simple-ng-table tbody tr.is-selected {
+    background-color: #e0e0e0;
+}
+.simple-ng-table td:first-of-type,
+.simple-ng-table th:first-of-type {
+    padding-left: 24px;
+}
+.simple-ng-table.condensed td:first-of-type,
+.simple-ng-table.condensed th:first-of-type {
+    padding-left: 10px;
+}
+.simple-ng-table td {
+    position: relative;
+    height: 48px;
+    border-top: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding: 12px 18px;
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: middle;
+}
+.simple-ng-table.condensed td {
+    height: auto;
+    padding: 10px;
+}
+.simple-ng-table td:last-of-type,
+.simple-ng-table th:last-of-type {
+    padding-right: 24px;
+}
+.simple-ng-table.condensed td:last-of-type,
+.simple-ng-table.condensed th:last-of-type {
+    padding-right: 10px;
+}
+.simple-ng-table.divide th,
+.simple-ng-table.divide td {
+    border-right: 1px solid rgba(0,0,0,.12);
+}
+.simple-ng-table.divide th:last-of-type,
+.simple-ng-table.divide td:last-of-type {
+    border-right: none;
+}
+
+/* md-button tiny-icon-button */
+.tiny-icon-button {
+    display: flex;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 50px !important;
+    overflow: hidden !important;
+}
+.tiny-icon-button md-icon {
+    font-size: 20px !important;
+    line-height: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+    color: inherit !important;
+}
+.tiny-icon-button .md-ripple-container {
+    border-radius: 50px !important;
+    overflow: hidden !important;
+}

@@ -1,0 +1,72 @@
+<style type="text/css">
+    .eko-edit-items {
+        width: 350px;
+        padding: 20px;
+    }
+    .eko-edit-items md-input-container {
+        margin: 10px 0 5px 0 !important;
+        max-height: 40px;
+    }
+    .eko-edit-items md-input-container.select {
+        margin: 15px 0 15px !important;
+    }
+</style>
+<md-dialog aria-label="Edit item">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-edit-items">
+                <div layout="column" flex ng-repeat="edit in editItems">
+                    <md-input-container ng-show="edit.type == 'text'" flex>
+                        <label>{{edit.title}}</label>
+                        <input type="text" ng-disabled="edit.disabled" ng-model="editItems[$index].value">
+                    </md-input-container>
+                    <md-input-container ng-show="edit.type == 'date'" class="md-block" flex>
+                        <label style="right: auto !important;">{{edit.title}}</label>
+                        <md-datepicker ng-model="editItems[$index].value || null"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container ng-show="edit.type == 'number'" class="eko-sale-row-item" flex>
+                        <label>{{edit.title}}</label>
+                        <input type="{{edit.type == 'number' ? 'number' : 'text'}}" ng-disabled="edit.disabled" ng-model="editItems[$index].value">
+                    </md-input-container>
+                    <md-input-container ng-show="edit.type == 'count_serials'" class="eko-sale-row-item" flex>
+                        <label>{{edit.title}}</label>
+                        <input type="number" ng-disabled="edit.disabled" ng-model="serials_count">
+                    </md-input-container>
+                    <md-input-container ng-show="edit.type == 'textarea'" flex>
+                        <label>{{edit.title}}</label>
+                        <textarea type="text" ng-disabled="edit.disabled" ng-model="editItems[$index].value"></textarea>
+                    </md-input-container>
+                    <md-input-container ng-show="edit.type == 'select'" class="md-block" flex>
+                        <label>{{edit.title}}</label>
+                        <md-select ng-disabled="edit.disabled" ng-model="editItems[$index].value">
+                            <md-option ng-repeat="item in edit.options track by $index" value="{{item.value}}">
+                                {{edit.option_text.length > 0 ? edit.options[$index][edit.option_text] : item}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div layout="row" class="padding-10">
+                <md-button type="button" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                    <md-icon class="material-icons">save</md-icon>
+                    Save Details
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

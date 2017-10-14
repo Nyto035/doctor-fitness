@@ -1,0 +1,146 @@
+<style type="text/css">
+    .eko-info-edit-modal {
+        width: 450px;
+        padding: 20px;
+    }
+    .eko-info-edit-modal md-input-container {
+        max-height: 45px !important;
+        margin: 10px 0 !important;
+    }
+    .eko-info-edit-modal p {
+        margin: 10px 0 !important;
+        font-size: 12px;
+    }
+    .eko-info-edit-modal md-checkbox {
+        margin-bottom: 4px !important;
+    }
+    .eko-check-list md-input-container {
+        float: left;
+        width: 48%;
+        margin: 0 !important;
+    }
+    .eko-info-modal-repeat .edit {
+        max-height: 50px;
+    }
+    .eko-info-modal-repeat .delete {
+        padding-top: 12px;
+    }
+    .eko-border {
+        border: 1px solid;
+        margin-left: 0 !important;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Branch</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-info-edit-modal">
+                <md-input-container flex>
+                    <label>Branch Name</label>
+                    <input type="text" ng-model="edit.name">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Physical Address</label>
+                    <textarea ng-model="edit.physical_address"></textarea>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Postal Address</label>
+                    <textarea ng-model="edit.postal_address"></textarea>
+                </md-input-container>
+                <div class="eko-info-modal-repeat" layout="column">
+                    <div class="edit" layout="row" ng-repeat="item in edit.phones track by $index">
+                        <md-input-container flex>
+                            <label>Edit Phone</label>
+                            <input type="text" ng-model="edit.phones[$index]">
+                        </md-input-container>
+                        <div class="delete" layout="column">
+                            <md-button ng-click="edit.phones.splice($index, 1)" class="tiny-icon-button">
+                                <md-icon class="material-icons">delete</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <div>
+                        <md-button class="md-primary eko-border" ng-click="edit.phones.push('')">
+                            <md-icon>add</md-icon>
+                            Add Phone Number
+                        </md-button>
+                    </div>
+                </div>
+                <div class="eko-info-modal-repeat" layout="column">
+                    <div class="edit" layout="row" ng-repeat="item in edit.emails track by $index">
+                        <md-input-container flex>
+                            <label>Edit Email</label>
+                            <input type="text" ng-model="edit.emails[$index]">
+                        </md-input-container>
+                        <div class="delete" layout="column">
+                            <md-button ng-click="edit.emails.splice($index, 1)" class="tiny-icon-button">
+                                <md-icon class="material-icons">delete</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <div>
+                        <md-button class="md-primary eko-border" ng-click="edit.emails.push('')">
+                            <md-icon>add</md-icon>
+                            Add Email Address
+                        </md-button>
+                    </div>
+                </div>
+                <div class="eko-info-modal-repeat" layout="column">
+                    <div class="edit" layout="row" ng-repeat="item in edit.websites track by $index">
+                        <md-input-container flex>
+                            <label>Edit Website</label>
+                            <input type="text" ng-model="edit.websites[$index]">
+                        </md-input-container>
+                        <div class="delete" layout="column">
+                            <md-button ng-click="edit.websites.splice($index, 1)" class="tiny-icon-button">
+                                <md-icon class="material-icons">delete</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <div>
+                        <md-button class="md-primary eko-border" ng-click="edit.websites.push('')">
+                            <md-icon>add</md-icon>
+                            Add Website
+                        </md-button>
+                    </div>
+                </div>
+                <div class="eko-info-modal-repeat" layout="column">
+                    <div class="edit" layout="row" ng-repeat="item in edit.socials track by $index">
+                        <md-input-container flex>
+                            <label>Edit Social Site</label>
+                            <input type="text" ng-model="edit.socials[$index]">
+                        </md-input-container>
+                        <div class="delete" layout="column">
+                            <md-button ng-click="edit.socials.splice($index, 1)" class="tiny-icon-button">
+                                <md-icon class="material-icons">delete</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <div>
+                        <md-button class="md-primary eko-border" ng-click="edit.socials.push('')">
+                            <md-icon>add</md-icon>
+                            Add Social Site
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="saveEdit($event)">
+                Save Details
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,63 @@
+<style>
+    .eko-auth-box {
+        margin: 0 auto !important;
+        max-width: 400px;
+        background: #fff;
+    }
+    .eko-auth-box md-input-container {
+        max-height: 40px;
+        margin: 10px 0 !important;
+    }
+    .eko-auth-box p {
+        font-size: 15px;
+        color: #888;
+    }
+    .eko-auth-box h1 {
+        font-weight: bold !important;
+    }
+    .eko-auth-button {
+        margin: 10px 0 5px !important;
+    }
+    .eko-auth-wrapper, body {
+        background: #eee !important;
+    }
+</style>
+<div layout="column" layout-fill layout-padding>
+    <div>
+        <div class="md-whiteframe-1dp eko-auth-box">
+            <div class="padding-20" layout="column">
+                <h1 class="md-headline"><md-icon class="material-icons">verified_user</md-icon> Agents Registration</h1>
+                <p>Thank you for your interest to join our team. Please fill in the form below to register.</p>
+                <md-input-container flex>
+                    <label>Full Names</label>
+                    <input ng-model="edit.names">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Phone Number</label>
+                    <input ng-model="edit.phone">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Email Address</label>
+                    <input ng-model="edit.email">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Region</label>
+                    <input ng-model="edit.region">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Group/Institution</label>
+                    <input ng-model="edit.group">
+                </md-input-container>
+                <div layout="row" flex>
+                    <div flex></div>
+                    <div>
+                        <md-button class="md-raised md-primary eko-auth-button" ng-click="saveDetails($event)">
+                            <md-icon class="material-icons">save</md-icon>
+                            Submit Details
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<style type="text/css">
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="padding-20" layout="column">
+        <div layout="row">
+            <h2 class="no-margin no-padding" flex>Inputs</h2>
+            <div>
+                <md-button ng-click="newInput($event)">
+                    <md-icon class="material-icons">add</md-icon>
+                    Input
+                </md-button>
+            </div>
+        </div>
+        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+            <table class="simple-ng-table condensed">
+                <thead>
+                <tr>
+                    <th class="nowrap">Name</th>
+                    <th class="nowrap">Code</th>
+                    <th class="nowrap">Buying Price</th>
+                    <th class="nowrap">Supplier</th>
+                    <th class="nowrap">Stock</th>
+                    <th class="nowrap">Tax</th>
+                    <th class="nowrap">Tax Status</th>
+                    <th class="nowrap">Tracked</th>
+                    <th class="nowrap">Date Modified</th>
+                    <th class="nowrap">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in business_inputs">
+                    <td class="nowrap">{{item.name}}</td>
+                    <td class="nowrap">{{item.code}}</td>
+                    <td class="nowrap">{{item.buying_price}}</td>
+                    <td class="nowrap">{{item.supplier_name}}</td>
+                    <td class="nowrap">{{item.opening_stock}}</td>
+                    <td class="nowrap">{{item.tax_name}}</td>
+                    <td class="nowrap">{{item.tax_status == "1" ? "Plus VAT" : "Tax Included"}}</td>
+                    <td class="nowrap">{{item.tracked == "1" ? "Tracked" : "Not Tracked"}}</td>
+                    <td class="nowrap">{{item.timestamp}}</td>
+                    <td>
+                        <div layout="row">
+                            <div>
+                                <md-button ng-click="editInput($index, $event)" class="tiny-icon-button">
+                                    <md-icon class="material-icons">edit</md-icon>
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-button ng-click="deleteInput($index, $event)" class="tiny-icon-button">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

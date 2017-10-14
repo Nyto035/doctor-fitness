@@ -1,0 +1,59 @@
+<!-- <ion-header-bar class="bar-stable" style="height: 60px">
+    <div class="col-12 login-title-cont">  
+      <div class="col-12 login-title"> 
+          EKO BIASHARA BOOK KEEPING
+      </div>
+    </div>
+</ion-header-bar> -->
+<ion-content style="background-color: #edecec;display: inline-block;" class="login-content">
+    <div class="list padding pad-t-30 login-cont">
+      <div style="">
+        <div class="form-logo">
+           <img src="img/logo.png">
+        </div>
+        <div class="col-xs-12 margin-t--10 margin-b-20 pad-h-10" ng-if="errorMessage">
+            <div class="alert alert-danger col-12">
+              <small><i class="icon ion-help-circled"></i> {{errorMessage}}</small>
+            </div>
+        </div>
+        <form class="padding" ng-submit="submitUser(login)">
+            <div class="form-cont">
+                <div class="group">
+                    <input type="email" name="login_email_session" ng-model="login.login_email_session"
+                           placeholder="john.doe@domain.com">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-email"></i> Email</label>
+                </div>
+            </div>
+            <div class="form-cont" style="margin-bottom: 0;">
+                <div class="group">
+                    <input type="password" name="password" ng-model="login.password"
+                           placeholder="************" value="password">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="icon ion-locked"></i> Password</label>
+                </div>
+            </div>
+            <div class="form-cont margin-b-0">
+                <button  class="button button-block button-balanced" ng-disabled="isDisabled">
+                    <i class="icon ion-android-exit">  SIGN IN</i>
+                    <ion-spinner icon="spiral" ng-if="loader"></ion-spinner>
+                </button>
+            </div>
+            <div class="col-12 text-center pad-b-10">
+                <small>Don't have an account yet?</small>
+            </div>
+            <div class="form-cont">
+                <a class="button button-outline col-12" ui-sref="signup">
+                    SIGN UP
+                </a>
+            </div>
+        </form>
+        </div>
+    </div>
+</ion-content>
+<div class="bar bar-footer bar-stable">
+  <div class="title"><small>© Eko Biashara 2017</small></div>
+</div>
+

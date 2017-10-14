@@ -1,0 +1,123 @@
+<style type="text/css">
+    .services-table-wrapper {
+        overflow-x: auto !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="manage services">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Manage Services</h2>
+                        <md-button ng-click="newService($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Service
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="services-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Service Name</th>
+                                    <th class="nowrap">Service Code</th>
+                                    <th class="nowrap">Service Fee</th>
+                                    <th class="nowrap">Tax</th>
+                                    <th class="nowrap">Tax Status</th>
+                                    <th class="nowrap">Date Modified</th>
+                                    <th class="nowrap"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_services">
+                                    <td class="nowrap">{{item.name}}</td>
+                                    <td class="nowrap">{{item.code}}</td>
+                                    <td class="nowrap">{{item.selling_price.addCommas()}}</td>
+                                    <td class="nowrap">{{item.tax_name}}</td>
+                                    <td class="nowrap">{{item.taxstatus_name}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                    <td class="nowrap">
+                                        <div layout="row">
+                                            <div>
+                                                <md-button ng-click="editService($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">edit</md-icon>
+                                                </md-button>
+                                            </div>
+                                            <div>
+                                                <md-button ng-click="deleteService($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="products inventory">
+                <md-content class="md-padding">
+                    <div layout="row">
+                        <h2 class="no-margin no-padding" flex>Manage Products</h2>
+                        <md-button ng-click="newProduct($event)">
+                            <md-icon class="material-icons">add</md-icon>
+                            New Product
+                        </md-button>
+                    </div>
+                    <div layout="column" class="margin-top-10">
+                        <div class="services-table-wrapper md-whiteframe-1dp">
+                            <table class="simple-ng-table condensed">
+                                <thead>
+                                <tr>
+                                    <th class="nowrap">Product Name</th>
+                                    <th class="nowrap">Code</th>
+                                    <th class="nowrap">Buying Price</th>
+                                    <th class="nowrap">Stock</th>
+                                    <th class="nowrap">Selling Price</th>
+                                    <th class="nowrap">Supplier</th>
+                                    <th class="nowrap">Tax</th>
+                                    <th class="nowrap">Tax Status</th>
+                                    <th class="nowrap">Tracked</th>
+                                    <th class="nowrap">Date Modified</th>
+                                    <th class="nowrap"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in business_products">
+                                    <td class="nowrap">{{item.name}}</td>
+                                    <td class="nowrap">{{item.code}}</td>
+                                    <td class="nowrap">{{item.buying_price.addCommas()}}</td>
+                                    <td class="nowrap">{{item.tracked == 1 ? "N/A" : item.opening_stock.addCommas()}}</td>
+                                    <td class="nowrap">{{item.selling_price.addCommas()}}</td>
+                                    <td class="nowrap">{{item.supplier_name}}</td>
+                                    <td class="nowrap">{{item.tax_name}}</td>
+                                    <td class="nowrap">{{item.taxstatus_name}}</td>
+                                    <td class="nowrap">{{item.tracked_name}}</td>
+                                    <td class="nowrap">{{item.timestamp}}</td>
+                                    <td>
+                                        <div layout="row">
+                                            <div>
+                                                <md-button ng-click="editProduct($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">edit</md-icon>
+                                                </md-button>
+                                            </div>
+                                            <div>
+                                                <md-button ng-click="deleteProduct($index, $event)" class="tiny-icon-button">
+                                                    <md-icon class="material-icons">delete</md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

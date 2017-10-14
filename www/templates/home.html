@@ -1,0 +1,80 @@
+<ion-view title='{{business.name}}' animation="fade-in-up">
+
+
+  <ion-content style="background-color: #edecec;">
+    <ion-card>
+        <!-- Spinner when data is loading -->
+        <div class="list padding pad-t-30 home-cont" style="position: relative;" ng-if='loaded'>
+            <div class="showbox">
+                <div class="circular-loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End of spinner -->
+
+      <div class="list padding pad-t-30 home-cont" style="position: relative;">
+        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[0].groups">
+            <div class="login-menu">
+                <!-- <div class="form-logo">
+                </div> -->
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12 lg-value">
+                            KES {{data.totals}}
+                        </div>
+                        <div class="col-xs-12 pad-t-5">
+                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? data.name : 'Cost of Sales'}}</small>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[1].groups">
+            <div class="login-menu">
+                <!-- <div class="form-logo">
+                </div> -->
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12 lg-value">
+                            KES {{data.totals}}
+                        </div>
+                        <div class="col-xs-12 pad-t-5">
+                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? 'Expenses' : data.name}}</small>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Net profit -->
+        <div class="col-xs-12 margin-b-10" ng-if="business_data.categories[1]">
+            <div class="login-menu">
+                <!-- <div class="form-logo">
+                </div> -->
+                <div class="col-12 grid-header">
+                    <div class="col-9 grid-title">
+                        <div class="col-xs-12 lg-value">
+                            KES {{business_data.categories[1].totals}}
+                        </div>
+                        <div class="col-xs-12 pad-t-5">
+                            <small>{{business_data.categories[1].totals_name}} {{business_data.start_date | date: 'MMM yyyy'}}</small>
+                        </div>
+                    </div>
+                    <div class="col-2 grid-action">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </ion-card>
+
+  </ion-content>
+
+</ion-view>

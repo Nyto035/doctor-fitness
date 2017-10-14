@@ -1,0 +1,81 @@
+<style type="text/css">
+    .eko-form-view {
+        margin-bottom: 20px;
+    }
+    .eko-form-view md-input-container {
+        margin: 15px 20px 0 0 !important;
+    }
+    .eko-info {
+        color: #888;
+    }
+    .eko-profile-avatar{
+        width: 100px;
+        height: 100px;
+    }
+    .eko-profile-title {
+        margin-left: 20px;
+    }
+    .eko-change-avatar {
+        margin-top: 5px;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="padding-20 eko-form-view">
+        <div layout="row" layout-align="end" layout-padding>
+            <img class="eko-profile-avatar" ng-src="{{session.avatar.trim().length < 1 ? avatar_placeholder : session.avatar}}">
+            <div layout="column" class="eko-profile-title" flex>
+                <h1 class="md-display-2 no-margin no-padding">{{session.names}}</h1>
+                {{session.email}}
+                <div class="eko-change-avatar">
+                    <md-button ng-click="changeAvatar($event)" class="no-margin md-primary">
+                        <md-icon class="material-icons">photo_filter</md-icon>
+                        Change Profile Picture
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <p class="no-padding">Profile Details</p>
+        <md-divider></md-divider>
+        <div class="margin-top-10"></div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Names</label>
+                <input ng-model="new_names">
+            </md-input-container>
+            <div flex>
+                <md-button ng-click="saveNames($event)" class="md-primary">
+                    Save Names
+                </md-button>
+            </div>
+        </div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Login Email</label>
+                <input ng-model="new_login_email">
+            </md-input-container>
+            <div flex>
+                <md-button ng-click="saveEmail($event)" class="md-primary">
+                    Save Email
+                </md-button>
+            </div>
+        </div>
+        <p class="no-padding">Change Login Password</p>
+        <md-divider></md-divider>
+        <div class="margin-top-10"></div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>New Password</label>
+                <input ng-model="new_password">
+            </md-input-container>
+            <div flex></div>
+        </div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Confirm Password</label>
+                <input ng-model="new_password_confirm">
+            </md-input-container>
+            <div flex></div>
+        </div>
+        <md-button ng-click="savePassword($event)" class="no-margin md-primary">Save New Password</md-button>
+    </div>
+</div>

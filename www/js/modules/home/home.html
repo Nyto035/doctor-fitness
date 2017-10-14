@@ -1,0 +1,308 @@
+<style type="text/css">
+    .eko-home-wrapper {
+        background: #eee;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100%);
+        height: calc(100%);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .eko-home-navbar .md-nav-bar {
+        height: 70px !important;
+        background: #fff !important;
+    }
+    .eko-home-navbar .md-button._md-nav-button {
+        line-height: 48px !important;
+        margin: 0 !important;
+    }
+    .eko-home-pad10 {
+        padding: 10px !important;
+    }
+    .eko-home-logo {
+        width: 120px !important;
+    }
+    .eko-home-hero {
+        background-image: url("res/images/bgimage.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-width: 100px;
+        min-height: 400px;
+        padding: 100px 10px 50px 10px;
+    }
+    .eko-home-auth-wrapper {
+        background: rgba(255, 255, 255, 0.77);
+        border-radius: 4px;
+        min-height: 100px;
+        min-width: 300px;
+    }
+    .eko-home-auth {
+        color: #555;
+        min-width: 300px;
+    }
+    .eko-home-auth md-input-container {
+        margin: 0 !important;
+    }
+    .eko-home-auth.register {
+        min-width: 300px !important;
+    }
+    .eko-home-auth.login {
+        min-width: 300px !important;
+    }
+    .eko-features-item {
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .eko-features-item i.material-icons{
+        font-size: 100px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 200px;
+        color: #00695f;
+    }
+    .eko-home-section {
+        min-height: 200px !important;
+    }
+    .eko-home-pricing {
+        text-align: center;
+    }
+    .eko-home-pricing-items md-card {
+        max-width: 350px !important;
+        text-align: left;
+    }
+    .eko-home-contact-form md-input-container {
+        margin: 0 !important;
+    }
+    .eko-home-footer {
+        color: rgb(77,182,172);
+        background: #002d28;
+        padding: 40px;
+        text-align: center;
+        font-size: 10px;
+    }
+</style>
+<div id="home" class="eko-home-wrapper" layout="column" flex layout-fill>
+    <md-nav-bar md-theme="eko_teal_accent" class="eko-home-navbar md-whiteframe-1dp" md-selected-nav-item="defaultNav" nav-bar-aria-label="navigation links">
+        <div hide-gt-xs show-xs style="padding-top: 15px !important;">
+            <md-button ng-click="openSideNavPanel()" class="md-icon-button" aria-label="Menu" style="margin:0 !important;">
+                <md-icon class="material-icons">menu</md-icon>
+            </md-button>
+        </div>
+        <div class="eko-home-pad10">
+            <img class="eko-home-logo" alt="Eko Biashara" src="res/images/logo.png" />
+        </div>
+        <md-nav-item hide-xs md-nav-click="scroll_to('home')" name="home">Home</md-nav-item>
+        <md-nav-item hide-xs md-nav-click="scroll_to('features')" name="features">Features</md-nav-item>
+        <md-nav-item hide-xs md-nav-click="scroll_to('pricing')" name="pricing">Pricing</md-nav-item>
+        <md-nav-item hide-xs md-nav-click="scroll_to('contacts')" name="contacts">Contacts</md-nav-item>
+        <md-nav-item hide-xs md-nav-click="showTerms()" name="terms">Terms</md-nav-item>
+        <div flex></div>
+        <div class="eko-home-pad10">
+            <md-button ng-show="isAuthenticated()" class="md-raised" ng-click="goHome()">
+                <md-icon class="material-icons">computer</md-icon> {{session.names}}
+            </md-button>
+        </div>
+    </md-nav-bar>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2><span>Eko Biashara</span></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
+                    <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list>
+                <md-subheader class="md-no-sticky">Navigate Menu</md-subheader>
+                <md-list-item ng-click="scroll_to('home', true)">
+                    <md-icon class="md-default-theme" class="material-icons">home</md-icon>
+                    <p>Home</p>
+                </md-list-item>
+                <md-list-item ng-click="scroll_to('features', true)">
+                    <md-icon class="md-default-theme" class="material-icons">apps</md-icon>
+                    <p>Features</p>
+                </md-list-item>
+                <md-list-item ng-click="scroll_to('pricing', true)">
+                    <md-icon class="md-default-theme" class="material-icons">attach_money</md-icon>
+                    <p>Pricing</p>
+                </md-list-item>
+                <md-list-item ng-click="scroll_to('contacts', true)">
+                    <md-icon class="md-default-theme" class="material-icons">drafts</md-icon>
+                    <p>Contacts</p>
+                </md-list-item>
+                <md-list-item ng-click="showTerms(true)">
+                    <md-icon class="md-default-theme" class="material-icons">error_outline</md-icon>
+                    <p>Terms</p>
+                </md-list-item>
+                <md-divider></md-divider>
+                <div style="text-align: center; padding: 20px 10px; font-size: 15px;">Copyright &copy; 2017</div>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content>
+        <section id="home" class="eko-home-section">
+            <div class="eko-home-hero" layout="row" layout-align="center center">
+                <div class="eko-home-pad10">
+                    <div class="eko-home-auth-wrapper">
+                        <div layout-xs="column" layout-gt-xs="row" layout-padding>
+                            <form id="login" class="eko-home-auth login" layout="column" flex ng-submit="login($event)">
+                                <h3 class="md-headline">Login</h3>
+                                <md-input-container md-no-float>
+                                    <label>Login email</label>
+                                    <input ng-model="auth.login_email_session">
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Password</label>
+                                    <input ng-model="auth.password" type="password">
+                                </md-input-container>
+                                <div layout="row" flex>
+                                    <div flex>
+                                        <a style="font-size: 12px; color: #888; text-decoration: none;" ui-sref="auth.forgot">Forgot password?</a>
+                                    </div>
+                                    <div>
+                                        <md-button type="submit" class="md-raised">
+                                            <md-icon class="md-default-theme" class="material-icons">lock_open</md-icon>
+                                            Sign In
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div style="text-align:center;font-size:10px;">
+                                    <p>By Signing in/up, you agree to our <a href="">Terms and Privacy Policy</a></p>
+                                </div>
+                            </form>
+                            <md-divider></md-divider>
+                            <form id="register" class="eko-home-auth register md-no-momentum" layout="column" flex ng-submit="register($event)">
+                                <h3 class="md-headline" style="color: rgb(255,87,34)">Start your <strong>14-Days</strong> Free Trial!</h3>
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>Phone</label>
+                                    <md-icon class="material-icons">phone</md-icon>
+                                    <input ng-model="user.phone" type="text">
+                                </md-input-container>
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>Email</label>
+                                    <md-icon class="material-icons">email</md-icon>
+                                    <input ng-model="user.register_user_by_email" type="email">
+                                </md-input-container>
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>Password</label>
+                                    <md-icon class="material-icons">lock</md-icon>
+                                    <input ng-model="user.password" type="password">
+                                </md-input-container>
+                                <md-input-container md-no-float class="md-block">
+                                    <md-icon class="material-icons">lock</md-icon>
+                                    <input ng-model="user.password_confirm" type="password" placeholder="Confirm Password">
+                                </md-input-container>
+                                <div style="text-align:right">
+                                    <md-button type="submit" class="md-primary md-raised">
+                                        <md-icon class="md-default-theme" class="material-icons">person</md-icon>
+                                        Get Started
+                                    </md-button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="features" class="eko-home-section">
+            <div class="eko-home-features" layout="row" layout-align="center">
+                <div layout="column" flex style="text-align: center;" layout-padding="20px">
+                    <h1 class="md-display-2" style="margin-bottom:0 !important;">Features</h1>
+                    <p style="margin-top:0 !important;">What We Offer!</p>
+                    <md-grid-list class="eko-features-list" md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="4" md-cols-gt-lg="8" md-gutter="5px" md-row-height="1:1" md-row-height-xs="2:3">
+                        <md-grid-tile md-colspan="1" md-rowspan="1" ng-repeat="feature in features">
+                            <div class="eko-features-item">
+                                <i class="material-icons">{{feature.icon}}</i>
+                                <h3 class="md-subhead">{{feature.title}}</h3>
+                                <p>{{feature.info}}</p>
+                            </div>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+            </div>
+        </section>
+        <section id="pricing" class="eko-home-section" style="background: rgb(0,105,92);">
+            <div class="eko-home-pricing" layout="column" layout-align="center" layout-padding>
+                <h1 class="md-display-2" style="margin-bottom:0 !important; color: #fff;">Pricing</h1>
+                <p style="margin-top:0 !important; color: #fff;">A plan for every business</p>
+                <div class="eko-home-pricing-items" layout-xs="column" layout-gt-xs="row" layout-align="center center">
+                    <md-card ng-repeat="item in pricing">
+                        <md-card-title style="background: rgb(178,223,219)">
+                            <md-card-title-text>
+                                <span class="md-headline"><md-icon class="md-default-theme" class="material-icons">bookmark</md-icon> {{item.name}}</span>
+                                <span class="md-subhead">{{item.price}} {{item.currency}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <md-list class="md-dense" flex>
+                                <md-list-item class="secondary-button-padding" ng-repeat="detail in item.text" ng-click="null" style="font-size: 12px !important;">
+                                    <p>{{detail}}</p>
+                                </md-list-item>
+                            </md-list>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button ng-click="scroll_to('register', false, 'home')">Get Started</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </div>
+        </section>
+        <section class="eko-home-section">
+            <div class="eko-home-about" layout="column">
+                <div layout="row" style="padding: 40px; background: #fff;">
+                    <p style="font-size: 14px; margin-bottom: 20px;">Eko Biashara helps businesses manage, digitize and automate their daily transactions and operation costs effectively. This includes sales, expenses, inventory, purchases and accounting. It also allows users to maintain an audit trail of all transactions performed.</p>
+                </div>
+            </div>
+        </section>
+        <section id="contacts">
+            <div class="eko-home-contacts" layout="column">
+                <div layout-sm="column" layout-gt-sm="row" style="padding:40px;">
+                    <form class="eko-home-contact-form" layout="column" layout-padding ng-submit="sendMessage($event)">
+                        <h2 class="md-headline" style="margin:0 !important;">Quick contact form</h2>
+                        <p style="margin-top:0 !important; margin-bottom:20px; font-size: 14px;">Leave us a message, feedback or a support request. We'll be sure to respond ASAP if needed</p>
+                        <md-input-container class="md-block" flex>
+                            <label>Your Email Address</label>
+                            <input ng-model="contact.process_contact_form_email" type="email">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Subject</label>
+                            <input ng-model="contact.subject" type="text">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Your Message</label>
+                            <textarea ng-model="contact.message"></textarea>
+                        </md-input-container>
+                        <div style="text-align:right">
+                            <md-button type="submit" class="md-primary">
+                                Send Message
+                                <md-icon class="md-default-theme" class="material-icons">send</md-icon>
+                            </md-button>
+                        </div>
+                    </form>
+                    <md-divider></md-divider>
+                    <div layout="column" layout-align="end none" flex>
+                        <md-list>
+                            <md-list-item class="md-2-line" ng-repeat="item in other_contacts">
+                                <md-icon class="md-default-theme" class="material-icons">{{item.icon}}</md-icon>
+                                <div class="md-list-item-text">
+                                    <h3>{{item.title}}</h3>
+                                    <p> {{item.text}} </p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="footer">
+            <div layout="column" class="eko-home-footer">
+                <p>Copyright &copy; 2017 Eko Biashara LTD</p>
+            </div>
+        </section>
+    </md-content>
+</div>

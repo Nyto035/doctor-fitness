@@ -1,0 +1,210 @@
+<style type="text/css">
+    .eko-purchases-form md-input-container {
+        margin: 12px 0 5px 0 !important;
+    }
+    .eko-purchase-row-item {
+        margin-top: 12px !important;
+        margin-right: 5px !important;
+        margin-bottom: 2px !important;
+    }
+    .eko-purchase-row-item:last-child {
+        margin-right: 0 !important;
+    }
+    .eko-purchases-table-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .eko-purchases-totals {
+        padding: 10px;
+        text-align: right;
+    }
+    .eko-purchase-row-items {
+        margin-top: -3px;
+        padding-left: 10px;
+    }
+    .eko-border-button {
+        border: 1px solid;
+    }
+    .eko-link {
+        text-decoration: none;
+    }
+    .eko-link:hover {
+        text-decoration: underline;
+    }
+    .eko-link:focus {
+        outline: 0 !important;
+    }
+    .eko-link:active {
+        color: #000 !important;
+    }
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+    .eko-collect-pay-button {
+        border: 1px solid;
+        padding: 2px 5px !important;
+        margin: 0 !important;
+        line-height: 12px !important;
+        font-size: 12px !important;
+        min-height: 0 !important;
+        min-width: 0 !important;
+    }
+    .eko-list-links a {
+        margin-left: 5px;
+        font-size: 12px !important;
+        line-height: 12px !important;
+    }
+</style>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-selected="selected_tab">
+            <md-tab label="New Purchase">
+                <md-content class="md-padding">
+                    <div class="padding-10 eko-purchases-form">
+                        <div layout="row" style="max-height: 60px;">
+                            <md-autocomplete
+                                    md-no-cache="true"
+                                    md-selected-item="purchase_supplier"
+                                    md-search-text="purchase_query"
+                                    md-search-text-change="searchSupplierQueryChange(purchase_query)"
+                                    md-selected-item-change="purchaseSupplierChange(supplier)"
+                                    md-items="supplier in searchSupplier()"
+                                    md-item-text="supplier.name"
+                                    md-min-length="0"
+                                    placeholder="Search Supplier" flex>
+                                <md-item-template>
+                                    <span md-highlight-text="purchase_query" md-highlight-flags="^i">{{supplier.name}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    New Supplier: <strong>{{purchase_query}}</strong>
+                                </md-not-found>
+                            </md-autocomplete>
+                            <md-input-container style="margin-left: 10px !important" class="md-block" flex>
+                                <label style="right: auto !important;">Transaction Date</label>
+                                <md-datepicker ng-model="transaction_date"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-xs="row" style="padding: 10px; background: #ddd; max-height: 60px; ">
+                            <md-autocomplete
+                                    class="eko-purchase-row-select-item"
+                                    md-no-cache="true"
+                                    md-selected-item="purchase_output_item"
+                                    md-search-text="purchase_output_query"
+                                    md-search-text-change="purchaseOutputQueryTextChange(purchase_output_query)"
+                                    md-selected-item-change="purchaseOutputItemChange(output)"
+                                    md-items="output in searchPurchaseOutputItem()"
+                                    md-item-text="output.name"
+                                    md-min-length="0"
+                                    placeholder="Search item to add" flex>
+                                <md-item-template>
+                                    <span md-highlight-text="purchase_output_query" md-highlight-flags="^i">{{output.name}} {{output.selling_price.addCommas()}} /=</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    New Item: <strong>{{purchase_output_query}}</strong>
+                                </md-not-found>
+                            </md-autocomplete>
+                            <div layout-gt-xs="row" layout-xs="column" flex class="eko-purchase-row-items">
+                                <md-input-container class="eko-purchase-row-item" flex-xs>
+                                    <label>Qty</label>
+                                    <input type="number" step="0.01" ng-model="item.qty">
+                                </md-input-container>
+                                <md-input-container class="eko-purchase-row-item" flex-xs>
+                                    <label>Price</label>
+                                    <input type="number" step="0.01" ng-model="item.price">
+                                </md-input-container>
+                                <md-input-container class="eko-purchase-row-item" flex-xs>
+                                    <label>Discount</label>
+                                    <input type="number" step="0.01" ng-model="item.discount">
+                                </md-input-container>
+                                <md-input-container class="eko-purchase-row-item" flex-xs>
+                                    <label>Total</label>
+                                    <input ng-model="item.total" disabled>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row" class="margin-top-10">
+                            <md-button ng-click="itemAdd($event)" style="margin-left: 0 !important" class="md-primary eko-border-button">
+                                <md-icon class="material-icons">add</md-icon>
+                                Add Item
+                            </md-button>
+                            <div flex></div>
+                            <md-button ng-click="processPurchase($event)" class="md-primary md-raised" style="background: #2196F3; margin-right: 0 !important">
+                                <md-icon class="material-icons">check</md-icon>
+                                Process Transaction
+                            </md-button>
+                        </div>
+                        <div layout="row">
+                            <div class="margin-top-10 eko-purchases-table-wrapper md-whiteframe-1dp">
+                                <div layout="row" layout-align="end start" style="background: #009688; color: #fff;">
+                                    <div style="padding: 12px;font-size: 12px;" flex>
+                                        Items Count {{items.length}}
+                                    </div>
+                                    <div class="eko-purchases-totals">
+                                        <strong>Total: {{items_total.addCommas()}}</strong>
+                                    </div>
+                                </div>
+                                <table class="simple-ng-table condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>VAT</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="purchase_item in items">
+                                        <td class="nowrap">{{purchase_item.name}}</td>
+                                        <td class="nowrap">{{purchase_item.qty}}</td>
+                                        <td class="nowrap">{{purchase_item.price.addCommas()}}</td>
+                                        <td class="nowrap">{{purchase_item.discount.addCommas()}}</td>
+                                        <td class="nowrap">{{purchase_item.tax_amount}}</td>
+                                        <td class="nowrap">{{purchase_item.total.addCommas()}}</td>
+                                        <td class="nowrap">
+                                            <a href="" ng-click="itemDelete($index)" class="eko-link" style="color: red">
+                                                delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div flex></div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Purchases List">
+                <md-content class="md-padding">
+                    <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+                        <table class="simple-ng-table condensed">
+                            <thead>
+                            <tr>
+                                <th class="nowrap">Date</th>
+                                <th class="nowrap">Supplier</th>
+                                <th class="nowrap">Amount</th>
+                                <th class="nowrap">Invoice</th>
+                                <th class="nowrap">Pay Supplier</th>
+                                <th class="nowrap">Notes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in purchases_list">
+                                <td class="nowrap">{{item.date}}</td>
+                                <td class="nowrap">{{item.customer_names}}</td>
+                                <td class="nowrap">{{item.amount.addCommas()}}</td>
+                                <td class="nowrap eko-list-links"><span ng-repeat="journal in item.journals | filter : {type : 'Invoice'} | orderBy : journal.name | limitTo : 1"><a href="" ng-click="showPrint(journal.id, 'Invoice')">{{journal.name}}</a><br></span></td>
+                                <td><md-button ng-show="item.amount_due > 0" class="eko-collect-pay-button md-primary" ng-click="collectPayment($index, $event)">Pay Supplier</md-button></td>
+                                <td class="nowrap">{{item.notes}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

@@ -1,0 +1,42 @@
+<style type="text/css">
+    .sales-list-table-wrapper {
+        overflow-x: auto;
+    }
+</style>
+<div layout="column" layout-fill>
+    <div class="padding-20" layout="column">
+        <div layout="row">
+            <h2 class="no-margin no-padding" flex>Expenses</h2>
+            <div>
+                <md-button ng-click="newExpense($event)">
+                    <md-icon class="material-icons">add</md-icon>
+                    Expense
+                </md-button>
+            </div>
+        </div>
+        <div class="margin-top-20 sales-list-table-wrapper md-whiteframe-1dp">
+            <table class="simple-ng-table condensed">
+                <thead>
+                <tr>
+                    <th class="nowrap">Transaction Date</th>
+                    <th class="nowrap">Expense Description</th>
+                    <th class="nowrap">Amount</th>
+                    <th class="nowrap">User Email</th>
+                    <th class="nowrap">Transaction Notes</th>
+                    <th class="nowrap">Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in business_expenses">
+                    <td class="nowrap">{{item.date}}</td>
+                    <td class="nowrap">{{item.customer_names}}</td>
+                    <td class="nowrap">{{item.amount.addCommas()}}</td>
+                    <td class="nowrap">{{item.user_email}}</td>
+                    <td class="nowrap">{{item.notes}}</td>
+                    <td class="nowrap">{{item.timestamp}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

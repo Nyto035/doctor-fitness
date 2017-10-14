@@ -1,0 +1,48 @@
+<style type="text/css">
+    .eko-sale-dialog-form md-input-container {
+        margin: 0 !important;
+    }
+    md-dialog-actions md-input-container {
+        min-width: 250px !important;
+        max-height: 50px !important;
+        margin-bottom: 0 !important;
+    }
+</style>
+<md-dialog aria-label="Transaction Document">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Print {{title.toLowerCase().indexOf("etr") > -1 ? "Mini Receipt" : title.toUpperCase()}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <iframe id="eko-document-frame" bgcolor="#fafafa" width="450" height="400"></iframe>
+        <md-dialog-actions layout="row">
+            <md-button type="button" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <!--
+            <md-input-container flex>
+                <label>Email Recipient</label>
+                <input type="text" ng-model="email">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="emailDocument($event)">
+                <md-icon class="material-icons">near_me</md-icon>
+                Email Document
+            </md-button>
+            -->
+            <md-button class="md-raised md-primary" ng-click="printFrame()">
+                <md-icon class="material-icons">local_printshop</md-icon>
+                Print
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="downloadPDF($event)">
+                <md-icon class="material-icons">file_download</md-icon>
+                PDF
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

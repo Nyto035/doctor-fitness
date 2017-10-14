@@ -1,0 +1,59 @@
+<style type="text/css">
+    .eko-image-uploader {
+        width: 500px;
+        padding: 20px;
+    }
+    @media (max-width: 599px){
+        .eko-image-uploader {
+            width: auto !important;
+        }
+        .croppie-container {
+            padding: 0 !important;
+        }
+    }
+    .eko-image-uploader-crop-wrapper {
+        padding: 10px;
+        min-height: 300px;
+    }
+    #image_uploader_file {
+        display: none;
+    }
+</style>
+<md-dialog aria-label="Process transaction">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Image Uploader</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="column" class="eko-image-uploader">
+                <div class="eko-image-uploader-crop-wrapper">
+                    <div id="image_uploader_crop"></div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-icon-button" ng-click="imageUploaderRotate(-90)">
+                <md-icon class="material-icons">rotate_left</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="imageUploaderRotate(90)">
+                <md-icon class="material-icons">rotate_right</md-icon>
+            </md-button>
+            <span flex></span>
+            <md-button class="md-raised" ng-click="uploadImage($event)">
+                <md-icon class="material-icons">file_upload</md-icon>
+                {{ImageUploaderReady ? 'Change' : 'Upload'}} Image
+            </md-button>
+            <input type="file" id="image_uploader_file">
+            <md-button ng-show="ImageUploaderReady" class="md-raised md-primary" ng-click="getImageUploaderImage($event)">
+                <md-icon class="material-icons">save</md-icon>
+                Save Image
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,79 @@
+
+<style type="text/css">
+    .eko-info-wrapper {
+        padding: 10px 30px;
+        background: #fff;
+    }
+	.eko-billing-checkout-button {
+		padding: 0 10px !important;
+	}
+	.eko-billing-check {
+		font-size: 50px !important;
+	}
+</style>
+<div layout="column" layout-fill layout-padding flex>
+    <div class="padding-20 eko-form-view">
+        <!-- <h2 class="no-margin no-padding">{{business.name}}</h2> -->
+		<div ng-show="!verifying" layout="column" style="margin-top: 30px;">
+			<div class="eko-info-wrapper md-whiteframe-1dp" layout="column">
+				<div class="margin-top-10" layout="row">
+					<div flex="50%">
+						<h2 class="no-margin no-padding"><md-icon class="material-icons">lock_outline</md-icon> Membership Renewal</h2>
+						<p class="no-padding">This business has insufficient funds. Kindly use the form below to renew your membership</p>
+					</div>		
+				</div>
+				<div layout="row">
+					<div flex layout-padding id="eko_billing_form" class="eko-billing-form"></div>
+					<md-divider></md-divider>
+					<div flex layout-padding>
+						<h3 class="no-margin">{{business.name}}<br><small>Bill details </small></h3>
+						<div class="eko-table-wrapper">
+							<table class="simple-ng-table condensed md-whiteframe-1dp">
+								<thead>
+								<tr>
+									<th class="nowrap">Item</th>
+									<th class="nowrap">Amount</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="item in business.billing.bill_items track by $index">
+									<td class="nowrap">{{item.item}}</td>
+									<td class="nowrap">{{item.amount.addCommas()}}</td>
+								</tr>
+								<tr style="background: #eee; font-weight: bold;">
+									<td class="nowrap">Amount Due</td>
+									<td class="nowrap">{{business.billing.bill.addCommas()}} Kes</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-show="verifying && !complete" layout="column" style="margin-top: 30px;">
+			<div class="eko-info-wrapper md-whiteframe-1dp" style="min-height: 200px; text-align: center;" layout="column">
+				<div layout="row"  layout-align="center start" style="margin-top: 50px;">
+					<md-progress-circular class="eko-billing-spinner" md-mode="indeterminate"></md-progress-circular>
+				</div>
+				<h1>Verifying Payment</h1>
+				<p>Updating business details. This will take a moment.</p>
+				<div layout="row"  layout-align="center start" ng-show="false">
+					<md-button class="md-raised"><md-icon class="material-icons">arrow_back</md-icon> My Businesses</md-button>
+				</div>
+			</div>
+		</div>
+		<div ng-show="verifying && complete" layout="column" style="margin-top: 30px;">
+			<div class="eko-info-wrapper md-whiteframe-1dp" style="min-height: 200px; text-align: center;" layout="column">
+				<div layout="row"  layout-align="center start" style="margin-top: 50px;">
+					<md-icon class="material-icons" style="width: 50px; height: 50px; font-size: 50px; color: #009688">check</md-icon>
+				</div>
+				<h1>Payment {{transaction_status}}!</h1>
+				<p>Thank you for your payment. You can now access your business.</p>
+				<div layout="row"  layout-align="center start">
+					<md-button ng-click="openThisBusiness()" class="md-raised"><md-icon class="material-icons">lock_open</md-icon> Open Businesses</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
