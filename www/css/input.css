@@ -199,6 +199,9 @@ input:focus ~ .highlight, select:focus ~ .highlight {
 .pad-h-8{
     padding: 0 5px;
 }
+.pad-h-10{
+    padding: 0 10px;
+}
 .pad-h-15{
     padding: 3px 15px;
 }
@@ -642,6 +645,12 @@ input[type="radio"] {
 .fs-16{
     font-size: 1.3rem;
 }
+.fs-20{
+    font-size: 2rem;
+}
+.fs-25{
+    font-size: 2.5rem;
+}
 .fs-30{
     font-size: 3rem;
 }
@@ -653,4 +662,8 @@ input[type="radio"] {
 }
 .fs-50{
     font-size: 5rem;
+}
+.button-sm{
+    min-height: 36px;
+    line-height: 36px;
 }

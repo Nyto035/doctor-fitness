@@ -1,0 +1,53 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+      <h1 class="title" style="margin-left: 10px !important;">
+          <span style="float: left;display: inline-block;margin-right: 25px;">
+              <i class="icon ion-android-arrow-back" ng-click="closeModal()"
+              style="font-size: 1.6rem;"></i>
+          </span>
+          <span>Perform Exercise</span>
+      </h1>
+    </ion-header-bar>
+    <ion-content class="pad-0">
+      <div class="list pad-h-0">
+          <div class="col-12 pad-h-8">
+              <img src="img/jogin.gif" style="width: 100%;">
+          </div>
+          <div class="col-12 pad-v-10">
+              <div class="col-12 card-title pad-l-10">
+                  <small><b>{{currentExercise.label | uppercase}}</b></small>
+              </div>
+              <div class="col-12 pad-v-15 pad-h-10">
+                  <small>{{currentExercise.long_description}}</small>
+              </div>
+          </div>
+          <div class="col-12 text-center fs-20 pad-v-10">
+              <b>{{counter || 00}}</b>
+              <small><small>sec</small></small>
+          </div>
+          <div class="col-12 pad-h-10 flex">
+            <div class="col-6 pad-r-5">
+                <button class="button button-sm button-balanced button-block"
+                ng-click="startTimer()" ng-if="!activateStop">
+                    START TIMER
+                </button>
+                <button class="button button-sm button-default button-block"
+                ng-click="stopTimer()" ng-if="activateStop">
+                    STOP TIMER
+                </button>
+            </div>
+            <div class="col-6 pad-l-5">
+                <button class="button button-sm button-balanced button-block"
+                ng-if="activateStop" ng-disabled="counter < 1">
+                    LAP
+                </button>
+                <button class="button button-sm button-defualt button-block"
+                ng-if="!activateStop" ng-disabled="counter === 0"
+                ng-click="resetCounter()">
+                    RESET 
+                </button>
+            </div>
+          </div>
+      </div>
+    </ion-content>
+</ion-modal-view>

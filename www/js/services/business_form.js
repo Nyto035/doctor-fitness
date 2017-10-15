@@ -10,8 +10,8 @@ angular.module('app.services.businessInputs', [])
             ' hands under your shoulders and your knees under your hips.';
         var long_desc = 'Get down on all fours and position your' +
             ' hands under your shoulders and your knees under your hips.' +
-            'Kick back with onee leg and squeeze the glutes.' +
-            'switch legs';
+            ' Kick back with onee leg and squeeze the glutes.' +
+            ' Switch legs';
         self.exerciseetails = function basicFiels() {
             return [
                 {
@@ -20,59 +20,59 @@ angular.module('app.services.businessInputs', [])
                     'duration': '00:15',
                     'short_description': 'Get down on all fours and position your' +
                         ' hands under your shoulders and your knees under your hips.',
-                    'long_descrption': 'Get down on all fours and position your ' +
+                    'long_description': 'Get down on all fours and position your ' +
                         'hands under your shoulders and your knees under your hips.' +
-                        'Kick back with onee leg and squeeze the glutes.' +
-                        'switch legs',
+                        ' Kick back with onee leg and squeeze the glutes.' +
+                        ' Switch legs',
                 },
                 {
                     'label': 'Single Leg Kickbacks ',
                     'key': 'agent',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Squats',
                     'key': 'pin',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Plunk Crunches',
                     'key': 'currency_name',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Knee to elbows',
                     'key': 'slogan',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Star Plunks',
                     'key': 'receipt_footnote',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Side Plunk Crunches',
                     'key': 'invoice_footnote',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
                 {
                     'label': 'Situps',
                     'key': 'quotation_footnote',
                     'duration': '00:15',
                     'short_description': short_desc,
-                    'long_descrption': long_desc,
+                    'long_description': long_desc,
                 },
             ];
         };
