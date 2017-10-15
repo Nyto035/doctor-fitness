@@ -23,19 +23,17 @@
     <ion-header-bar class="bar-green side-bar-header">
       <div class="col-12">
           <div class="logo-icon col-12 sidebar-icon">
-              <div class="col-8 sidebar-back" ui-sref="businesses">
-                  <i class="icon ion-chevron-left"></i>
-                  &nbsp;&nbsp;Switch Business
+              <div class="col-11 sidebar-back pad-l-10 text-left" 
+              ng-click="logOutUser()">
+                  <i class="icon ion-log-out"></i>
+                  &nbsp;&nbsp;Sign Out
               </div>
-              <!-- <div class="icon-cont">
-                  <i class="icon ion-person-stalker"></i>
-              </div> -->
-              <div class="col-4 sidebar-logout" ui-sref="login">
-                  <i ng-click="logOutUser()" class="icon ion-log-out"></i>
+              <div class="col-1 sidebar-logout" ui-sref="login">
+                  <!-- <i ng-click="logOutUser()" class="icon ion-log-out"></i> -->
               </div>
           </div>
           <div class="sidebar-details col-11">
-              <div class="col-xs-12">{{business.name}}</div>
+              <div class="col-xs-12">Doctor Fitness</div>
               <div class="col-xs-12 pad-t-0"><small>{{user.email}}</small>
           </div>
       </div>
@@ -48,40 +46,26 @@
                <i class="icon ion-monitor ion-left text-warning"></i>
                 &nbsp;&nbsp;&nbsp;<small>Home</small>
           </ion-item>
-          <ion-item menu-close ui-sref="app.sales" ui-sref-active="active">
-               <i class="icon ion-android-cart ion-left text-primary"></i>
-                &nbsp;&nbsp;&nbsp;<small>Sales</small>
+          <ion-item menu-close ui-sref="app.exercises" ui-sref-active="active">
+               <i class="icon ion-ios-football ion-left text-info"></i>
+                &nbsp;&nbsp;&nbsp;<small>Exercises</small>
           </ion-item>
-          <ion-item menu-close ui-sref="app.purchases" ui-sref-active="active">
-              <i class="icon ion-cash ion-left text-success"></i>
-              &nbsp;&nbsp;&nbsp;<small>Purchases</small>
+          <ion-item menu-close ui-sref="app.meal_plan" ui-sref-active="active">
+              <i class="icon ion-android-list ion-left text-success"></i>
+              &nbsp;&nbsp;&nbsp;<small>Meal Plan</small>
           </ion-item>
-          <ion-item ui-sref-active="active" menu-close ui-sref="app.expenses">
-              <i class="icon ion-card ion-left text-warning"></i>
-              &nbsp;&nbsp;&nbsp;<small>Expenses</small>
+          <ion-item ui-sref-active="active" menu-close ui-sref="app.targets">
+              <i class="icon ion-stats-bars ion-left text-warning"></i>
+              &nbsp;&nbsp;&nbsp;<small>Targets</small>
           </ion-item>
           <ion-item ui-sref-active="active" menu-close ui-sref="app.dashboard" class="list-grow-animation" >
-              <i class="icon ion-speedometer ion-left text-success"></i>
-              &nbsp;&nbsp;&nbsp;<small>Business Summary</small>
+              <i class="icon ion-pie-graph ion-left text-danger"></i>
+              &nbsp;&nbsp;&nbsp;<small>My Stas</small>
           </ion-item>
-          <ion-item menu-close ui-sref-active="active" ui-sref="app.business_information">
-              <i class="icon ion-android-apps ion-left text-info"></i>
-              &nbsp;&nbsp;&nbsp;<small>Business Information</small>
-          </ion-item>
-          <ion-item menu-close ui-sref="app.sales({'is_open': 'open_modal'})"
+          <ion-item menu-close ui-sref="app.community" ui-sref-active="active"
           style="border-top: 1px solid #e0e0e0;">
-              <i class="icon ion-plus ion-left text-muted"></i>
-              &nbsp;&nbsp;&nbsp;<small>Create New Sale</small>
-          </ion-item>
-          <ion-item menu-close ui-sref="app.purchases({'is_open': 'open_modal'})"
-          style="border-top: 1px solid #e0e0e0;">
-              <i class="icon ion-plus ion-left text-muted"></i>
-              &nbsp;&nbsp;&nbsp;<small>Create New Purchase</small>
-          </ion-item>
-          <ion-item menu-close ui-sref="app.expenses({'is_open': 'open_modal'})"
-          style="border-top: 1px solid #e0e0e0;">
-              <i class="icon ion-plus ion-left text-muted"></i>
-              &nbsp;&nbsp;&nbsp;<small>Create New Expense</small>
+              <i class="icon ion-ios-people ion-left text-muted"></i>
+              &nbsp;&nbsp;&nbsp;<small>Community</small>
           </ion-item>
         </div>
         </div>

@@ -67,7 +67,7 @@ angular.module('starter', [
     .run(["$state", "$rootScope", "UserService", "ionicReady", "$timeout",
         function ($state, $rootScope, UserService, ionicReady, $timeout) {
         var redirectFxn = function loadFxn(toState, evt) {
-            if(toState.name === 'businesses.list'){
+            if(toState.name === 'app.home'){
                 UserService.getLoggedInUsers()
                 .then(function(resp){
                     if(!_.isUndefined(resp.rows) && resp.rows.length <= 0){
@@ -85,28 +85,18 @@ angular.module('starter', [
                 });
             }
         };
-        /*$rootScope.$on("$stateChangeStart",
-            function (evt, toState, toParams, fromState, fromParams) {
-                console.log('State change start');
-                ionicReady.ready().then(function () {
-                    redirectFxn(toState, evt);          
-                });
-                $timeout(function(){
-                    redirectFxn(toState, evt);
-                },5000);
-        });*/
         $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
             ionicReady.ready().then(function () {
                 console.log('State change success', toState.name);
                 if (fromState.name === '' && 
-                    (toState.name === 'businesses.list') || (toState.name === 'businesses')){
+                    (toState.name === 'app.home') || (toState.name === 'app')){
                     event.preventDefault();
                     UserService.getLoggedInUsers()
                     .then(function(results){
                         if(results.rows.length <= 0 && toState.name !== 'registration'){
                             $state.go("login");
                         } else {
-                            $state.go('businesses.list');
+                            $state.go('app.home');
                         }
                     })
                     .catch(function(errror){
@@ -125,6 +115,6 @@ angular.module('starter', [
     .config(['$urlRouterProvider', '$ionicConfigProvider', function ($urlRouterProvider, $ionicConfigProvider) {
         $ionicConfigProvider.views.maxCache(0);
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise("/business");
+        $urlRouterProvider.otherwise("app/home");
     }]);
  

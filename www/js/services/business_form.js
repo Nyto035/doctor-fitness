@@ -1,45 +1,78 @@
 angular.module('app.services.businessInputs', [])
 
-.service('app.services.businessProfile', businessProfile)
+.service('app.services.workoutProfile', workoutProfile)
 
 .service('app.services.businessInputs.form', businessInputs);
     
-    function businessProfile() {
+    function workoutProfile() {
         var self = this;
-        self.basicDetails = function basicFiels() {
+        var short_desc = 'Get down on all fours and position your' +
+            ' hands under your shoulders and your knees under your hips.';
+        var long_desc = 'Get down on all fours and position your' +
+            ' hands under your shoulders and your knees under your hips.' +
+            'Kick back with onee leg and squeeze the glutes.' +
+            'switch legs';
+        self.exerciseetails = function basicFiels() {
             return [
                 {
-                    'label': 'Name',
+                    'label': 'Glute Kickback',
                     'key': 'name',
-                    'required': true,
+                    'duration': '00:15',
+                    'short_description': 'Get down on all fours and position your' +
+                        ' hands under your shoulders and your knees under your hips.',
+                    'long_descrption': 'Get down on all fours and position your ' +
+                        'hands under your shoulders and your knees under your hips.' +
+                        'Kick back with onee leg and squeeze the glutes.' +
+                        'switch legs',
                 },
                 {
-                    'label': 'Agent Code',
+                    'label': 'Single Leg Kickbacks ',
                     'key': 'agent',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Business PIN',
-                    'key': 'pin'
+                    'label': 'Squats',
+                    'key': 'pin',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Currency Code',
+                    'label': 'Plunk Crunches',
                     'key': 'currency_name',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Business Slogan',
+                    'label': 'Knee to elbows',
                     'key': 'slogan',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Receipt Footnote',
+                    'label': 'Star Plunks',
                     'key': 'receipt_footnote',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Invoice Footnote',
+                    'label': 'Side Plunk Crunches',
                     'key': 'invoice_footnote',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
                 {
-                    'label': 'Quotation Footnote',
+                    'label': 'Situps',
                     'key': 'quotation_footnote',
+                    'duration': '00:15',
+                    'short_description': short_desc,
+                    'long_descrption': long_desc,
                 },
             ];
         };
