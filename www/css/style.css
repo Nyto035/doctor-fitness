@@ -269,7 +269,7 @@ input{
     margin-bottom:15px;
 }
 .form-logo>img{
-    height:60px;
+    height:120px;
 }
 .login-cont>div{
     position: relative; 
@@ -315,7 +315,10 @@ input{
         width: 100%;
     }
 }*/
-
+:root {
+  --main-bg-color: #f28a20;
+  --darker-bg-color: #472011;
+}
 .spinner svg {
     width: 19% !important;
     height: 30px !important;
@@ -326,8 +329,15 @@ input{
     color: #2196F3;
     padding-left: 3px;
 }
+.logo-light{
+    background-color: #f28a20;
+}
+.logo-dark{
+
+}
 .button.button-balanced,.bar.bar-balanced{
-    background-color: rgb(0,150,136);
+    /*background-color: rgb(0,150,136);*/
+    background-color: var(--main-bg-color) !important;
 }
 .text-success{
     color: rgb(0,150,136) !important;
@@ -589,7 +599,7 @@ ion-popover-view.sales-popover{
 }
 .login-content>.scroll{
     display: flex;
-    overflow: hidden;
+    /*overflow: hidden;*/
     height:100%;
 }
 .desc-cont{
@@ -702,8 +712,8 @@ div.title-left{
     color: #666;
 }
 .button-outline{
-    border:2px solid rgb(0,150,136) !important;
-    color: rgb(0,150,136) !important;
+    border:2px solid var(--main-bg-color) !important;
+    color: var(--main-bg-color) !important;
 }
 button.ion-log-out{
     font-size: 1.2rem !important;

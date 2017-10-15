@@ -18,7 +18,7 @@
         "providerPortal.auth.oauth2"
     ])
 
-    .constant("HOMEPAGE", "businesses.list")
+    .constant("HOMEPAGE", "app.home")
     .constant("SETTINGS", settings)
 
     .config(["$httpProvider", function ($httpProvider) {
