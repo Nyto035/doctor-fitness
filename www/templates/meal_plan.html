@@ -16,57 +16,65 @@
         <!-- End of spinner -->
 
       <div class="list padding pad-t-30 home-cont" style="position: relative;">
-        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[0].groups">
+        <div class="col-xs-12 margin-b-20" ng-repeat="meal in meals">
             <div class="login-menu">
                 <!-- <div class="form-logo">
                 </div> -->
-                <div class="col-12 grid-header">
-                    <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{data.totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? data.name : 'Cost of Sales'}}</small>
-                        </div>
+                <div class="col-12 card-title">
+                    <div class="col-9 title-text">
+                        {{meal.key}}
                     </div>
-                    <div class="col-2 grid-action">
+                    <div class="col-3 title-time text-success">
+                        {{item.duration}}
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[1].groups">
-            <div class="login-menu">
-                <!-- <div class="form-logo">
-                </div> -->
-                <div class="col-12 grid-header">
-                    <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{data.totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? 'Expenses' : data.name}}</small>
+                <div class="col-12 grid-header padding-b-0">
+                    <div class="col-12 pad-l-0 pad-t-5 pad-b-0 grid-title inline-block">
+                        <!-- <div class="col-3 margin-r-8">
+                            <img src="img/placeholder.png"
+                            style="width: 80px;height:80px;">
+                        </div> -->
+                        <div class="col-12 flex pad-t-5" ng-repeat="(key, val) in meal.value"
+                        style="margin-bottom: 10px;width:104%;" ng-class="{'border-top': key > 0}">
+                            <div class="col-3 pad-r-10">
+                                <div class="col-12 text-center" style="font-size:2.9rem">
+                                    <span ng-if="key === 0">
+                                        <i class="icon ion-coffee text-success"></i>
+                                    </span>
+                                    <span ng-if="key === 1"
+                                    class="inline-block margin-t-5">
+                                        <i style="font-size:2.6rem"
+                                        class="icon ion-soup-can text-info"></i>
+                                    </span>
+                                    <span ng-if="key === 2"
+                                    class="inline-block margin-t-5">
+                                        <i style="font-size:2.4rem"
+                                        class="icon ion-pizza text-warning"></i>
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 text-center" style="font-size:0.75rem;">
+                                    <small>
+                                        <span ng-if="key === 0">Breakfast</span>
+                                        <span ng-if="key === 1">Lunch</span>
+                                        <span ng-if="key === 2">Dinner</span>
+                                    </small>
+                                </div>
+                                
+                            </div>
+                            <div class="col-9">
+                                <ul class="col-12">
+                                    <li ng-repeat="item in val">
+                                        <small>
+                                            <small>
+                                                {{item}}
+                                            </small>
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-2 grid-action">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Net profit -->
-        <div class="col-xs-12 margin-b-10" ng-if="business_data.categories[1]">
-            <div class="login-menu">
-                <!-- <div class="form-logo">
-                </div> -->
-                <div class="col-12 grid-header">
-                    <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{business_data.categories[1].totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small>{{business_data.categories[1].totals_name}} {{business_data.start_date | date: 'MMM yyyy'}}</small>
-                        </div>
-                    </div>
-                    <div class="col-2 grid-action">
+                    <div class="col-12 grid-action">
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ angular.module('app.services.businessInputs', [])
             ' hands under your shoulders and your knees under your hips.' +
             ' Kick back with onee leg and squeeze the glutes.' +
             ' Switch legs';
-        self.exerciseetails = function basicFiels() {
+        self.exerciseDetails = function basicFiels() {
             return [
                 {
                     'label': 'Glute Kickback',
@@ -76,35 +76,50 @@ angular.module('app.services.businessInputs', [])
                 },
             ];
         };
-        self.contactDetails = function contFxn() {
+        self.mealsDetails = function mealsFxn() {
+            var breakFast = [
+                'Natural passion juice 200ml',
+                'Oats/Bran 200gms',
+                'One egg or 50gms chicken gizzard',
+            ];
+            var lunch = [
+                'Whole banana or a fresh apple',
+                'Spinach or lettuce or cucumber',
+                'One cup milk 200ml',
+            ];
+            var dinner = [
+                'Natural Orange Juice 200ml/beef soup',
+                'Cereals/Wholegrain bread 200gms',
+                'White meal fish 200gm',
+            ];
             return [
-                {
-                    'label': 'Branch Name',
-                    'key': 'name',
+                { 
+                    'key': 'Monday',
+                    'value': [breakFast, lunch, dinner]
                 },
                 {
-                    'label': 'Physical Address',
-                    'key': 'physical_address',
+                    'key': 'Tuesday', 
+                    'value': [breakFast, lunch, dinner]
                 },
                 {
-                    'label': 'Postal Address',
-                    'key': 'postal_address',
+                    'key': 'Wednesday',
+                    'value': [breakFast, lunch, dinner]
+                },
+                { 
+                    'key': 'Thursday',
+                    'value': [breakFast, lunch, dinner]
                 },
                 {
-                    'label': 'Phone Number',
-                    'key': 'phones',
+                    'key': 'Friday',
+                    'value': [breakFast, lunch, dinner]
                 },
                 {
-                    'label': 'Email Address',
-                    'key': 'emails',
+                    'key': 'Saturday',
+                    'value': [breakFast, lunch, dinner]
                 },
                 {
-                    'label': 'Websites',
-                    'key': 'websites',
-                },
-                {
-                    'label': 'Social Sites',
-                    'key': 'socials',
+                    'key': 'Sunday',
+                    'value': [breakFast, lunch, dinner]
                 },
             ];
         };

@@ -667,3 +667,9 @@ input[type="radio"] {
     min-height: 36px;
     line-height: 36px;
 }
+.border-bottom{
+    border-bottom: 1px solid #e0e0e0;
+}
+.border-top{
+    border-top: 1px solid #e0e0e0;
+}

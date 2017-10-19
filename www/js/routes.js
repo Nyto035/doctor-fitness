@@ -57,7 +57,7 @@ angular.module('starter.routes', [])
   })
   .state('app.meal_plan', {
       cache: false,
-      url: '/exercise',
+      url: '/meal_plan',
       views: {
         'menuContent@app': {
           templateUrl: 'templates/meal_plan.html',

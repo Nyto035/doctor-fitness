@@ -17,10 +17,13 @@
         $scope.loaded = true;
         $scope.user_token = '';
         $scope.getConfigs = function conFxn() {
-            if ($state.includes('app.exercises')) {
-                $scope.exercises = fitness.exerciseetails();
+            if ($state.current.name === 'app.exercises') {
+                $scope.exercises = fitness.exerciseDetails();
                 $scope.loaded = false;
-                console.log($scope.exercises);
+            } else if ($state.current.name === 'app.meal_plan') {
+                console.log('Called');
+                $scope.meals = fitness.mealsDetails();
+                $scope.loaded = false;
             }
         };
         // $scope.user = authConfig.getUser();
