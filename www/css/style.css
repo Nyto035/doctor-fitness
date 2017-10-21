@@ -461,7 +461,7 @@ button {
 }
 .btn-rnd.btn-sm{
     height: 30px;
-    width:30px;
+    width:33px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -580,7 +580,7 @@ button {
 ion-popover-view.pop-modal{
     top:80px!important;
     width: 91.66667%;
-    margin-left: 8px !important;
+    margin-left: -6px !important;
 }
 ion-popover-view.sales-popover{
     /*top: 200px!important;*/
@@ -733,7 +733,7 @@ button.ion-log-out:before{
     border-bottom: 1px solid #e0e0e0;
     display: flex;
 }
-.card-title>.title-text{
+.card-title>.title-text, .titles{
     font-size: 85%;
     color: var(--darker-bg-color);
 }

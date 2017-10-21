@@ -167,6 +167,14 @@ input:focus ~ .highlight, select:focus ~ .highlight {
     width: 33.33333333%;
     min-height: 1px;
 }
+.pad-r-20{
+    padding-right: 20px;
+    padding-left: 0;
+}
+.pad-r-30{
+    padding-right: 30px;
+    padding-left: 0;
+}
 .pad-r-10{
     padding-right: 10px;
     padding-left: 0;
@@ -238,10 +246,10 @@ input:focus ~ .highlight, select:focus ~ .highlight {
     padding-top: 0px;
 }
 .pad-t-5{
-    padding-top: 5px;
+    padding-top: 5px !important;
 }
 .pad-t-10{
-    padding-top: 10px;
+    padding-top: 10px !important;
 }
 .pad-t-15{
     padding-top: 15px;
@@ -642,8 +650,17 @@ input[type="radio"] {
     stroke: #ffa700;
   }
 }
+.fs-8{
+    font-size: 0.85rem;
+}
+.fs-14{
+    font-size: 1.4rem;
+}
 .fs-16{
     font-size: 1.3rem;
+}
+.fs-17{
+    font-size: 1.7rem;
 }
 .fs-20{
     font-size: 2rem;
@@ -672,4 +689,13 @@ input[type="radio"] {
 }
 .border-top{
     border-top: 1px solid #e0e0e0;
+}
+.button-sm{
+    height:32px;
+    line-height:32px;
+    font-size: 0.85rem !important;
+    border:transparent !important;
+}
+.bg-white{
+    background-color: #FFFFFF !important;
 }

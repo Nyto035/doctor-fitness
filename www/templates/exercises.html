@@ -16,7 +16,8 @@
         <!-- End of spinner -->
 
       <div class="list padding pad-t-30 home-cont" style="position: relative;">
-        <div class="col-xs-12 margin-b-10" ng-repeat="item in exercises">
+        <div class="col-xs-12 margin-b-10" ng-repeat="item in exercises"
+        ng-click="openModal($event, item)">
             <div class="login-menu">
                 <!-- <div class="form-logo">
                 </div> -->
@@ -28,24 +29,32 @@
                         {{item.duration}}
                     </div>
                 </div>
-                <div class="col-12 grid-header"
-                ng-click="openModal($event, item)">
+                <div class="col-12 grid-header inline-block pad-h-10">
                     <div class="col-12 pad-t-10 grid-title flex">
                         <div class="col-3 margin-r-8">
-                            <img src="img/placeholder.png"
+                            <img ng-if="item.img_url" ng-src="img/{{item.img_url}}"
+                            style="width: 80px;height:75px;">
+                            <img src="img/placeholder.png" ng-if="!item.img_url"
                             style="width: 80px;height:80px;">
                         </div>
                         <div class="col-9 pad-l-5">
                             <small>
                                 <small>
-                                    {{item.short_description || 'Some description here' | limitTo : 95}}
-                                    {{item.short_description.length > 95 ? '...' : ''}}
+                                    {{item.long_description || 'Some description here' | limitTo : 112}}
+                                    {{item.long_description.length > 112 ? '...' : ''}}
                                 </small>
                             </small>
                         </div>
                     </div>
-                    <div class="col-12 grid-action">
-                    </div>
+                    <!-- <div class="col-12 flex pad-t-5 border-top">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <a class="button button-outline button-sm col-12" 
+                            ng-click="openModal($event, item)">
+                                PERFORM
+                            </a>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>

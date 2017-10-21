@@ -1,0 +1,22 @@
+<ion-popover-view class="pop-modal" ng-class="{'pop-modal' : context === 'pay',
+    'sales-popover': context === 'sale'}">
+    <ion-header-bar>
+        <h1 class="title" style="text-align: left;margin-left:20px;">
+            <!-- Exercise Description -->
+        </h1>
+        <button class="button button-clear button-primary"
+        ng-click="closePopover($event)">
+            <i class="icon ion-close-circled" style="color:#cccccc;"></i>
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="col-12 overflow-hidden">
+            <div class="col-12 pad-h-15">
+                <b><small>{{currentExercise.label}} Description</small></b>
+            </div>
+            <div class="col-12 pad-h-15 margin-t-10 pad-b-15">
+                <small>{{currentExercise.long_description}}</small>
+            </div>
+        </div>
+    </ion-content>
+</ion-popover-view>

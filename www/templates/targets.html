@@ -1,78 +1,132 @@
 <ion-view title='Targets' animation="fade-in-up">
-
-
   <ion-content style="background-color: #edecec;">
     <ion-card>
-        <!-- Spinner when data is loading -->
-        <div class="list padding pad-t-30 home-cont" style="position: relative;" ng-if='loaded'>
-            <div class="showbox">
-                <div class="circular-loader">
-                    <svg class="circular" viewBox="25 25 50 50">
-                      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
-                    </svg>
+        <div class="list padding col-12 pad-t-30 menu-cont" style="position: relative;display: inline-block;">
+            <div class="col-x-12" style="position: relative;" ng-if='!loaded'>
+                <div class="showbox">
+                    <div class="circular-loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+                        </svg>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- End of spinner -->
-
-      <div class="list padding pad-t-30 home-cont" style="position: relative;">
-        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[0].groups">
-            <div class="login-menu">
-                <!-- <div class="form-logo">
-                </div> -->
-                <div class="col-12 grid-header">
+            <div class="login-menu col-12 flex pad-t-10" ng-if="loaded" style="align-items: center;">
+                <div class="col-4 profile-cont">
+                    <div class="details-cont bg-white">
+                        <div class="col-12" ng-class="{'msg-icon-flex': business_details.logo, 'msg-icon': !business_details.logo }">
+                            <i class="icon ion-person-stalker" ng-if="business_details.logo === ''"></i>
+                            <img src="img/placeholder.png" style="height: 85px;width: 85px; border-radius: 50%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-cont col-8 inline-block">
+                    <div class="col-12">
+                        <b>{{user.names}}</b>
+                    </div>
+                    <div class="col-12 margin-t-5">
+                        <small>
+                            {{user.email | limitTo: 22}}
+                            {{user.email.length > 22 ? '...' : ''}}
+                        </small>
+                    </div>
+                    <div class="col-12 margin-t-5">
+                        <small>
+                            <i class="icon ion-male"></i>
+                            &nbsp;Male
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!-- Weight Details -->
+            <div class="login-menu col-xs-12 pad-t-10 margin-t-10">
+                <div class="col-12 grid-header margin-b-0">
                     <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{data.totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? data.name : 'Cost of Sales'}}</small>
+                        <div class="col-xs-12 pad-t-0 titles">
+                            <b>Weight (Kgs)</b>
                         </div>
                     </div>
-                    <div class="col-2 grid-action">
+                    <div class="col-2 grid-action flex">
+                    </div>
+                </div>
+                <div class="col-12 pad-h-15 flex">
+                    <div class="col-3">
+                        <div class="col-12 fs-14 pad-l-0">
+                            65.2
+                        </div>
+                        <div class="col-12 fs-8">
+                            Current
+                        </div>
+                    </div>
+                    <div class="col-3 text-center pad-r-20">
+                        <div class="col-12 fs-14">
+                            60.0
+                        </div>
+                        <div class="col-12 fs-8">
+                            Target
+                        </div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="col-12 fs-14 text-warning">
+                            5.2
+                        </div>
+                        <div class="col-12 fs-8 text-warning">
+                            Left
+                        </div>
+                    </div>
+                    <div class="col-3 text-right pad-r-20">
+                        <button class="button button-balanced btn-rnd btn-sm"
+                        ng-click="" style="float: right;">
+                            <i class="icon ion-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="desc-cont col-12">
+                    <div class="text-cont col-12" ng-repeat="field in profileFields" ng-if="business_details[field.key]">
+                        <div class="col-12 label text-muted"><small>{{field.label}}</small></div>
+                        <div class="col-12 value">{{business_details[field.key]}}</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 margin-b-10" ng-repeat="data in business_data.categories[1].groups">
-            <div class="login-menu">
-                <!-- <div class="form-logo">
-                </div> -->
-                <div class="col-12 grid-header">
+            <!-- Height Details -->
+            <div class="login-menu col-xs-12 pad-t-10 margin-t-10">
+                <div class="col-12 grid-header margin-b-0">
                     <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{data.totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small> {{business_data.start_date | date: 'MMM yyyy'}} {{data.name ? 'Expenses' : data.name}}</small>
+                        <div class="col-xs-12 pad-t-0 titles">
+                            <b>Height (Meters)</b>
                         </div>
                     </div>
-                    <div class="col-2 grid-action">
+                    <div class="col-2 grid-action flex">
+                    </div>
+                </div>
+                <div class="col-12 pad-h-15 flex">
+                    <div class="col-3">
+                        <div class="col-12 fs-14 pad-l-0">
+                            3.52
+                        </div>
+                        <div class="col-12 fs-8">
+                            Current
+                        </div>
+                    </div>
+                    <div class="col-3 text-center pad-r-20">
+                    </div>
+                    <div class="col-3 text-center">
+                    </div>
+                    <div class="col-3 text-right pad-r-20">
+                        <button class="button button-balanced btn-rnd btn-sm"
+                        ng-click="" style="float: right;">
+                            <i class="icon ion-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="desc-cont col-12">
+                    <div class="text-cont col-12" ng-repeat="field in profileFields" ng-if="business_details[field.key]">
+                        <div class="col-12 label text-muted"><small>{{field.label}}</small></div>
+                        <div class="col-12 value">{{business_details[field.key]}}</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Net profit -->
-        <div class="col-xs-12 margin-b-10" ng-if="business_data.categories[1]">
-            <div class="login-menu">
-                <!-- <div class="form-logo">
-                </div> -->
-                <div class="col-12 grid-header">
-                    <div class="col-9 grid-title">
-                        <div class="col-xs-12 lg-value">
-                            KES {{business_data.categories[1].totals}}
-                        </div>
-                        <div class="col-xs-12 pad-t-5">
-                            <small>{{business_data.categories[1].totals_name}} {{business_data.start_date | date: 'MMM yyyy'}}</small>
-                        </div>
-                    </div>
-                    <div class="col-2 grid-action">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     </ion-card>
 
   </ion-content>

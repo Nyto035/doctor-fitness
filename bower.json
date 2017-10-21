@@ -9,6 +9,7 @@
     "underscore": "^1.8.3",
     "moment": "^2.18.1",
     "ngCordova": "^0.1.27-alpha",
-    "angular-ui-select": "^0.19.8"
+    "angular-ui-select": "^0.19.8",
+    "c3": "^0.4.18"
   }
 }

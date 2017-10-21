@@ -6,73 +6,134 @@ angular.module('app.services.businessInputs', [])
     
     function workoutProfile() {
         var self = this;
-        var short_desc = 'Get down on all fours and position your' +
-            ' hands under your shoulders and your knees under your hips.';
-        var long_desc = 'Get down on all fours and position your' +
-            ' hands under your shoulders and your knees under your hips.' +
-            ' Kick back with onee leg and squeeze the glutes.' +
-            ' Switch legs';
+        var leg_glute = ' Lie on your back with your knees bent and '+
+            'soles of your feet on the floor. Extend one leg. On your' +
+            ' exhale, squeeze your glutes, and push your hips up toward'+
+            ' the ceiling as high as you can. Pause, then lower until'+
+            ' your butt hovers right above the floor, and repeat'+
+            ' without touching the ground to complete one rep.';
+
+        var hydrants = 'Begin on all fours with your knees hips-width'+
+            ' apart and your wrists stacked over your shoulders.'+
+            ' Keeping the knee bent to a 90-degree angle, lift the'+
+            ' right leg out to hip-height, then extend the raised leg'+
+            ' straight out to the side. Pause before you bend the knee'+
+            ' again and bring your leg back to starting position to '+
+            'complete one rep.';
+        var rainbows = ' Begin on all fours with your knees hips-width'+
+            ' apart and your wrists stacked over your shoulders. With a'+
+            ' pointed toe, extend your right leg and reach the foot '+
+            'toward the ceiling. Slowly lower your leg to tap the floor.'+
+            ' Squeeze your glutes as you lift the leg back to starting'+
+            ' position, then lower the leg to tap the floor about a'+
+            ' foot to the left of your kneeling foot. Return to'+
+            ' starting position to complete the rep.';
+        var curtsy = ' Stand with your feet hips-width apart and'+
+            ' your hands pressed together at chest level. Keeping your'+
+            ' hips square, step your left leg diagonally behind you and'+
+            ' bend both knees at a 90-degree angle, keeping the knees'+
+            ' behind the toes. Pause, then press into your right heel to'+
+            ' return to standing position as you extend your left leg '+
+            'into a side kick. That\'s one rep.';
+        var heel_lifted = ' Begin with your feet slightly wider than'+
+            ' shoulders-width apart, toes pointed outward. Lift your '+
+            'left heel. With control, sit your hips back as you lower'+
+            ' your butt toward the floor, keeping your knees behind '+
+            'your toes and bracing your core to help you balance. '+
+            'Pause, then press into your right heel to stand up into'+
+            ' the starting position to complete one rep.';
+        var bear_plunk = 'Begin in a plank position with your shoulders'+
+            ' stacked above your wrists, and your body in a straight'+
+            ' line between the top of your head and your heels. Lift'+
+            ' your right leg and bend the knee 90 degrees, bringing '+
+            'your heel toward your butt. With a flexed foot, squeeze'+
+            ' your glutes, and raise your right heel up toward the '+
+            'ceiling as high as you can. Pause, then bring your right'+
+            ' knee back to meet your left knee to complete one rep.';
+        var deadlift = 'Stand on your right foot with your left leg '+
+            'bent in front of you, knee at hip-height. Engage your glutes'+
+            ' as you slowly fold forward, reaching both hands toward the'+
+            ' ground as you extend the left leg straight out behind you.'+
+            ' Pause, then return to starting position with control to'+
+            ' complete one rep.';
+        var sumo_squat = 'Begin with your feet wider than shoulder-width'+
+            ' apart, toes pointed slightly outward. Keeping your knees'+
+            ' above your ankles and chest high, bend your knees until '+
+            'your thighs are parallel to the ground. With control, raise'+
+            ' one heel as high as you can without compromising your form.'+
+            ' Release it to the floor, then repeat on the opposite side '+
+            'to complete one rep. Continue to alternate sides.';
+        var squat_sumo = ' Begin with your feet wider than shoulders-width'+
+            ' apart, toes pointing forward. Keeping your knees behind your'+
+            ' toes, sit your hips back into a squat. Pulse up a few inches'+
+            ' as your turn your toes 45 degrees outward and sink your hips'+
+            ' back into your low squat. Pulse up to bring your toes '+
+            'forward and continue to alternate foot positioning as you pulse.';
+        var long_desc = leg_glute;
         self.exerciseDetails = function basicFiels() {
             return [
                 {
-                    'label': 'Glute Kickback',
+                    'label': 'Single-Leg Glute Bridge',
                     'key': 'name',
-                    'duration': '00:15',
-                    'short_description': 'Get down on all fours and position your' +
-                        ' hands under your shoulders and your knees under your hips.',
-                    'long_description': 'Get down on all fours and position your ' +
-                        'hands under your shoulders and your knees under your hips.' +
-                        ' Kick back with onee leg and squeeze the glutes.' +
-                        ' Switch legs',
+                    'duration': '00:30',
+                    'img_url': 'single-leg-hipthrust.gif',
+                    'long_description': leg_glute,
                 },
                 {
-                    'label': 'Single Leg Kickbacks ',
+                    'label': 'Hydrants With Leg Extensions',
                     'key': 'agent',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'hydrants-w-leg-extension.gif',
+                    'long_description': hydrants,
                 },
                 {
-                    'label': 'Squats',
+                    'label': 'Rainbows',
                     'key': 'pin',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'rainbows.gif',
+                    'long_description': rainbows,
                 },
                 {
-                    'label': 'Plunk Crunches',
+                    'label': 'Curtsy Lunges',
                     'key': 'currency_name',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'curtsy-lunge-to-kick.gif',
+                    'long_description': curtsy,
                 },
                 {
-                    'label': 'Knee to elbows',
+                    'label': 'Heel-Lifted Sumo Squat',
                     'key': 'slogan',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'squat-w-raised-hee.gif',
+                    'long_description': heel_lifted,
                 },
                 {
-                    'label': 'Star Plunks',
+                    'label': 'Bear Plank Leg Lifts',
                     'key': 'receipt_footnote',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'bear-plank-leg-lifts.gif',
+                    'long_description': bear_plunk,
                 },
                 {
-                    'label': 'Side Plunk Crunches',
+                    'label': 'Single-Leg Dead Lift',
                     'key': 'invoice_footnote',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'single-leg-deadlifts.gif',
+                    'long_description': deadlift,
                 },
                 {
-                    'label': 'Situps',
+                    'label': 'Sumo Squats to Calf Raise',
                     'key': 'quotation_footnote',
-                    'duration': '00:15',
-                    'short_description': short_desc,
-                    'long_description': long_desc,
+                    'duration': '00:30',
+                    'img_url': 'squat-alt-heel-lift.gif',
+                    'long_description': sumo_squat,
+                },
+                {
+                    'label': 'Squat to Sumo',
+                    'key': 'quotation_footnote',
+                    'duration': '00:30',
+                    'img_url': 'sumo-to-straight-squat.gif',
+                    'long_description': squat_sumo,
                 },
             ];
         };
@@ -148,162 +209,4 @@ angular.module('app.services.businessInputs', [])
                 },
             ];
         };
-
-        self.addItem = function itemFxn(arg) {
-            return [
-                {
-                    'name': 'id',
-                    'type': 'select',
-                    'verbous_name': 'Item',
-                    'class': 'margin-b-10'
-                },
-                {
-                    'name': 'qty',
-                    'type': 'textarea',
-                    'verbous_name': 'Quantity',
-                    'class': 'col-12 inline-block margin-b-20 margin-t-20'
-                },
-                {
-                    'name': 'price',
-                    'type': 'number',
-                    'verbous_name': 'Item Price',
-                    'class': 'col-12 inline-block margin-b-20'
-                },
-                {
-                    'name': 'discount',
-                    'type': 'number',
-                    'verbous_name': 'Discount',
-                    'class': 'col-12 inline-block margin-b-20'
-                },
-                /*{
-                    'name': 'total',
-                    'type': 'number',
-                    'readonly': true,
-                    'verbous_name': 'Total Price',
-                    'class': 'col-12 inline-block margin-b-20'
-                },*/
-            ];
-        }
-
-        self.createBusiness = function createInputs() {
-            return [
-                {
-                    'name': 'new_business',
-                    'type': 'text',
-                    'verbous_name': 'Business Name',
-                    'required': true,
-                },
-                {
-                    'name': 'plan',
-                    'type': 'select',
-                    'verbous_name': 'Select Business Plan',
-                    'options': 'plans',
-                },
-                {
-                    'name': 'agent',
-                    'type': 'text',
-                    'verbous_name': 'Agent Code',
-                },
-                {
-                    'name': 'pin',
-                    'type': 'text',
-                    'verbous_name': 'Business Pin',
-                },
-                /*{
-                    'name': 'slogan',
-                    'type': 'hidden',
-                    'verbous_name': 'Business Pin',
-                },
-                {
-                    'name': 'logo',
-                    'type': 'hidden',
-                    'verbous_name': 'Business Pin',
-                },
-                {
-                    'name': 'invoice_footnote',
-                    'type': 'hidden',
-                    'verbous_name': 'Business Pin',
-                },
-                {
-                    'name': 'receipt_footnote',
-                    'type': 'hidden',
-                    'verbous_name': 'Business Pin',
-                },
-                {
-                    'name': 'quotation_footnote',
-                    'type': 'hidden',
-                    'verbous_name': 'Business Pin',
-                },
-                {
-                    'name': 'main_branch_name',
-                    'type': 'hidden',
-                    'verbous_name': 'Main Branch Name',
-                },*/
-                {
-                    'name': 'currency_id',
-                    'type': 'select',
-                    'verbous_name': 'Business Currency',
-                    'options': 'currencies',
-                },
-                {
-                    'name': 'phone_number',
-                    'type': 'text',
-                    'verbous_name': 'Phone Number',
-                    'required': true,
-                },
-                {
-                    'name': 'email_address',
-                    'type': 'email',
-                    'verbous_name': 'Email Address',
-                    'required': true,
-                },
-                {
-                    'name': 'postal_address',
-                    'type': 'text',
-                    'verbous_name': 'Postal Address',
-                    'required': true,
-                },
-                {
-                    'name': 'physical_address',
-                    'type': 'text',
-                    'verbous_name': 'Physical Address',
-                    'required': true,
-                },
-            ];
-        };
-
-        self.addExpense = function itemFxn(arg) {
-            return [
-                {
-                    'name': 'expense_name',
-                    'type': 'text',
-                    'verbous_name': 'Expense',
-                    'class': 'margin-b-10'
-                },
-                {
-                    'name': 'transaction_date',
-                    'type': 'date',
-                    'verbous_name': 'Transaction Date',
-                    'class': 'col-12 inline-block margin-b-20 margin-t-20'
-                },
-                {
-                    'name': 'payment_account_id',
-                    'type': 'select',
-                    'verbous_name': 'Payment Account',
-                    'class': 'col-12 inline-block margin-b-20'
-                },
-                {
-                    'name': 'amount',
-                    'type': 'number',
-                    'verbous_name': 'Expense Amount',
-                    'class': 'col-12 inline-block margin-b-20'
-                },
-                /*{
-                    'name': 'notes',
-                    'type': 'text',
-                    'verbous_name': 'Expense Notes',
-                    'class': 'col-12 inline-block margin-b-20'
-                },*/
-            ];
-        }
     };

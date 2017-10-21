@@ -5,21 +5,30 @@
               <i class="icon ion-android-arrow-back" ng-click="closeModal()"
               style="font-size: 1.6rem;"></i>
           </span>
-          <span>Perform Exercise</span>
+          <span>{{today | date: 'EEE, MMMM d'}}</span>
       </h1>
     </ion-header-bar>
     <ion-content class="pad-0">
       <div class="list pad-h-0">
           <div class="col-12 pad-h-8">
-              <img src="img/jogin.gif" style="width: 100%;">
+              <img ng-src="img/{{currentExercise.img_url}}" style="width: 100%;">
           </div>
           <div class="col-12 pad-v-10">
-              <div class="col-12 card-title pad-l-10">
-                  <small><b>{{currentExercise.label | uppercase}}</b></small>
+              <div class="col-12 card-title pad-l-10 flex">
+                  <div class="col-9">
+                      <small>
+                          <b>{{currentExercise.label | uppercase}}</b>
+                      </small>
+                  </div>
+                  <div class="col-3 text-right pad-r-10"
+                  ng-click="openPopover($event)">
+                    <i class="icon ion-help-circled text-info" 
+                    style="font-size: 1.5rem;"></i>
+                  </div>
               </div>
-              <div class="col-12 pad-v-15 pad-h-10">
+              <!-- <div class="col-12 pad-v-15 pad-h-10">
                   <small>{{currentExercise.long_description}}</small>
-              </div>
+              </div> -->
           </div>
           <div class="col-12 text-center fs-20 pad-v-10">
               <b>{{counter || 00}}</b>
