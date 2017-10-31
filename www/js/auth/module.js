@@ -1,8 +1,8 @@
 (function () {
     "use strict";
     //let ekobiashara_server = "https://127.0.0.1/oldapi/api_provider/index.php";
-    // var ekobiashara_server = "https://ekobiashara.com/dev2/api_provider/index.php";
-    var ekobiashara_server = "https://ekobiashara.com/api_provider/index.php";
+    var ekobiashara_server = "https://ekobiashara.com/dev2/api_provider/index.php";
+    // var ekobiashara_server = "https://ekobiashara.com/api_provider/index.php";
     // "https://www.demo2.ekobiashara.com/oldapi/api_provider/index.php"
     var settings = {
         "EDI_SERVER": ekobiashara_server,
