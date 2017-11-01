@@ -75,6 +75,16 @@ angular.module('starter.routes', [])
         }
       }
   })
+  .state('app.tracker', {
+      cache: false,
+      url: '/tracker',
+      views: {
+        'menuContent@app': {
+          templateUrl: 'templates/tracker.html',
+          controller: 'app.controllers.trackController'
+        }
+      }
+  })
   .state('app.my_stats', {
       cache: false,
       url: '/my_stats',

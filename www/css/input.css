@@ -699,3 +699,15 @@ input[type="radio"] {
 .bg-white{
     background-color: #FFFFFF !important;
 }
+.bg-default{
+    background-color: #9e9e9e;
+}
+.text-default{
+    color: #9e9e9e;
+}
+.bg-royal{
+    background-color: #9C27B0;
+}
+.text-royal{
+    color: #9C27B0;
+}

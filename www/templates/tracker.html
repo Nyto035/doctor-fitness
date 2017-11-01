@@ -1,0 +1,45 @@
+<ion-view view-title="TRACK STEPS" >
+    <div class="bar bar-subheader bar-default" ng-if="user.user_type === 'CUSTOMER'">
+        <div class="col-11">
+            Test
+        </div>
+      </div>
+    <ion-content>
+        <div class="col-12">
+            <div style="width: 100%;margin-top:0;"></div>
+            <div map-lazy-load="https://maps.google.com/maps/api/js"
+                map-lazy-load-params="{{googleMapsUrl}}">
+                <ng-map style="height: 89vh;" 
+                geo-callback="callbackFunc('you')" zoom="17">
+                    <marker position="current" centered="true">
+                    </marker>
+                    <marker position="{{latlng}}" centered="true"
+                    draggable="false" ng-if="latlng">
+                    </marker>
+                    <marker ng-repeat="courier in couriers" position="{{courier.point}}"
+                    icon="{ url:'img/destination.png', scaledSize:[30,32], origin: [0,0] }">
+                    </marker>
+                    <directions
+                      polyline-options='{strokeColor: "red"}'
+                      draggable="true"
+                      waypoints="{{way_points}}"
+                      suppress-markers="false"
+                      origin="{{src}}"
+                      destination="{{latlng}}"
+                      >
+                    </directions>
+                </ng-map>
+            </div>
+        </div>
+    </ion-content>
+    <div class="col-12 pad-h-20 gisbtn-cont">
+        <button class="button-balanced button button-block"
+        ng-if="!isWatching" ng-click="watchPosition()">
+            <span class="pull-left">START WALKING</span>
+        </button>
+        <button class="button-default button button-block"
+        ng-if="isWatching" ng-click="clearLocWatcher()">
+            <span class="pull-left">END WALK</span>
+        </button>
+    </div>
+</ion-view>

@@ -4,6 +4,7 @@ var DB_NAME = "ecko.db";
 angular.module('starter', [
     'ionic',
     'ngCordova',
+    'ngMap',
     // 'starter.controllers',
     'starter.routes',
     // 'starter.services',
@@ -14,6 +15,12 @@ angular.module('starter', [
     'app.controllers',
     'app.database',
     ])
+
+    .constant("GPS_OPTIONS", {
+        maximumAge: 0,
+        timeout: 1000 * 60 * 3, // 10 mins
+        enableHighAccuracy: true
+    })
 
     .run(["ionicReady", "$cordovaSQLite", "DBService", "$rootScope",
         "UserService", "$state", "$cordovaDevice", "$timeout",
